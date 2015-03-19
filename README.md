@@ -1,6 +1,10 @@
 # CS1C-Project2-iRobots
 Class Projected 2
 
+You must use inheritance, composition, exception handlers, a virtual function, and at least two overloaded operators.  At least one class should use templates. At least one class must contain a pointer (a copy constructor needs to be written and tested). Design a very readable, easy to use interface to demonstrate your program.  Contingency handling should include addressing invalid input.
+
+Submit a UML class diagram, at least three use cases, and a state diagram with your project.
+----------
 The iRobotsTheBomb on-line pamphlet must:  
 
 >1.	Provide a help option to explain how to operate your program
