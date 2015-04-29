@@ -8,6 +8,8 @@
 #include <ios>
 #include <sstream>
 #include <iomanip>
+#include "Date.h"
+#include "nodeTemplate.h"
 
 using namespace std;
 
