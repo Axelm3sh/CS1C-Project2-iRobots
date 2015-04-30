@@ -68,8 +68,8 @@ const string getInfoMenu =
 
 const string viewCustomerListMenu =
 		"[1] VIEW CUSTOMER LIST\n"
-		  "[2] EDIT CUSTOMER LIST\n"
-		  "[3] PRINT CUSTOMER LIST\n"
+		"[2] EDIT CUSTOMER LIST\n"
+		"[3] PRINT CUSTOMER LIST\n"
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 
@@ -100,6 +100,37 @@ const string suitableEnvironment =
 		"2. Space (robot performance is significantly decreases in a zero-gravity environment)\n"
 		"3. Greenland (our robots get cold...) \n\n";
 
+const string paymentPlans =
+		"Pricing Plan:\n"
+		"Our robots are offered in 3 models:\n\n"
+		"A. Silver -\n"
+		"The silver model detects common organic explosive residues,"
+		" and alerts the user to potential explosives.\n"
+		"For the budget oriented customer who does not expect heavy use or sophisticated terrorists\n"
+		"$50000\n\n"
 
+		"B. Gold - \n"
+		"This model not only detects explosives, "
+		"but has the ability to dispose of explosives remotely.\n"
+		"Recommended for users who expect a high volume of explosives.\n"
+		"$250000\n\n"
+
+		"C. Platinum -\n"
+		"The top of the line model uses advanced spectrometry and radiographic \n"
+		"tools to detect all known types of explosives, no matter how well they're hidden.\n"
+		"Has all the features of the silver and gold models\n"
+		"Recommended for institutional users dealing with sophisticated terrorists\n"
+		"$500000\n\n";
+
+const string warrentyInfo =
+		"Maintenance Plan:\n"
+		"The annual cost of the plan is 15% of the model of the robot originally purchased.\n"
+		"It covers all routine maintenance and qualification, along with replacement of consumable parts,\n"
+		"and repair of damage caused by explosions.\n\n"
+
+		"Guarantee:\n"
+		"For the first 24 months after robot purchase, all malfunctions due to manufacturing \n"
+		"or quality defects will be repaired at the expense of the manufacturer. \n"
+		"This does not include damage caused by user error.\n\n";
 
 #endif /* MYHEADER_H_ */

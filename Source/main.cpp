@@ -63,13 +63,13 @@ int main(){
 				cin.ignore();
 				break;
 			case 2:
-				cout << "..warranty info...\n";
+				cout << warrentyInfo;
 
 				cout << "Press any key to continue";
 				cin.ignore();
 				break;
 			case 3:
-				cout << "..payment plans...\n";
+				cout << paymentPlans;
 
 				cout << "Press any key to continue";
 				cin.ignore();
