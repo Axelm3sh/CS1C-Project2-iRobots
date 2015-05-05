@@ -16,7 +16,7 @@ class Transaction {
 	public:
 
 		Transaction();
-		~Transaction();
+		//~Transaction();
 
 		Date   GetDate();
 		int    GetModeNum();
@@ -25,7 +25,7 @@ class Transaction {
 		string PrintTrans();
 
 	private:
-		Date  Date();
+		Date  tranDate;
 		int   modelNum;
 		float price;
 		bool  maintenance;

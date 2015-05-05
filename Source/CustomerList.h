@@ -9,31 +9,28 @@
 #define CUSTOMERLIST_H_
 
 #include <string>
+#include "User.h"
+#include "linkListTemplate.h"
 using namespace std;
 
 class CustomerList{
-
 
 public:
 	void AddCust(User);
 	void RemoveCust(string name);
 	void SortListByName();
 	void SortListByNameKeyOnly();
-	string PrintCustomer();
 	string PrintList();
-	string PrintList(bool);
+	string PrintList(bool keyOnly);
 	//MakePurchase
 	//EditPrevTransactions
-
 
 private:
 
 	LinkList<User> userList;
 	int            size;
 
-
 };
-
 
 
 #endif /* CUSTOMERLIST_H_ */

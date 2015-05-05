@@ -25,6 +25,4 @@ class TransactionList{
 
 };
 
-
-
 #endif /* TRANSACTIONLIST_H_ */

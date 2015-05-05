@@ -9,18 +9,23 @@
 #define USER_H_
 
 #include <string>
+#include "linkListTemplate.h"
+#include "Transaction.h"
+#include <sstream>
 using namespace std;
 
 class User{
 
 public:
 	User();
+	User(string);
 	~User();
 
+	void SetName(string);
 	void SetRating(string);
 	void SetKey(bool);
 	void SetAddress(string);
-
+	bool operator<(const User&);
 	void RequestPamphlet();
 	bool ContactShop();
 
@@ -28,13 +33,16 @@ public:
 	bool   GetKey();
 	string GetRating();
 	bool   GetIsAdmin();
+	string PrintUser();
+
+
 
 private:
 	string 			name;
 	string 			address;
 	bool   			key;
 	string 			rating;
-	TransactionList myTransactions;
+	//LinkList<Transaction> myTransactions;
 	bool   			isAdmin;
 
 };

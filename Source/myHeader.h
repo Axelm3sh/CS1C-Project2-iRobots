@@ -10,6 +10,7 @@
 #include <iomanip>
 #include "Date.h"
 #include "nodeTemplate.h"
+#include "CustomerList.h"
 
 using namespace std;
 

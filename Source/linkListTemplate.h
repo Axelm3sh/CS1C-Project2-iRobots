@@ -23,6 +23,7 @@ public:
 	void AddNode(Node<Type>* newNode, int location);
 	void DeleteNode(int);
 	void ClearList();
+	Node<Type>* GetHead();
 
 	string OutputList();
 	int         GetSize();
@@ -95,10 +96,12 @@ template<class Type>
 void LinkList<Type>::AddNode(Node<Type>* newNode)
 {
 	Node<Type>* node = new Node<Type>;  //PROC - used to add new node to the list
+	Node<Type>* sptr;
+	bool        found = false;
+	sptr = head;
 
 	node->SetData(newNode->GetData());
 	size++;
-
 	//IF the list is empty
 	if (head == NULL)
 	{
@@ -107,12 +110,39 @@ void LinkList<Type>::AddNode(Node<Type>* newNode)
 		head = node;
 		tail = node;
 	}
-	else
-	{
+	else if(node->GetData() < sptr->GetData()){
 		node->SetNext(head);
 		node->SetPrev(NULL);
 		head->SetPrev(node);
 		head = node;
+	}
+	else
+	{
+		while(sptr != NULL && !found){
+		if(node->GetData() < sptr->GetData())
+		{
+			found = true;
+		}
+		else{
+			sptr = sptr->GetNext();
+		}
+
+		}//end while
+
+		if(found)
+		{
+			node->SetNext(sptr);
+			node->SetPrev(sptr->GetPrev());
+			sptr->GetPrev()->SetNext(node);
+			sptr->SetPrev(node);
+
+		}
+		else{
+			node->SetPrev(tail);
+			node->SetNext(NULL);
+			tail->SetNext(node);
+			tail = node;
+		}
 	}
 }
 
@@ -215,6 +245,12 @@ void LinkList<Type>::ClearList(){
 	tail = NULL;
 	delete sptr;
 
+}
+
+//Returns the head
+template<class Type>
+Node<Type>* LinkList<Type>::GetHead(){
+return head;
 }
 
 //Deletes the node located at the passed in location
