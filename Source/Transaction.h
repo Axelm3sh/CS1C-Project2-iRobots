@@ -9,6 +9,8 @@
 #define TRANSACTION_H_
 
 #include <string>
+#include <sstream>
+#include <iomanip>
 #include "Date.h"
 using namespace std;
 
@@ -16,13 +18,16 @@ class Transaction {
 	public:
 
 		Transaction();
-		//~Transaction();
+		Transaction(Date, int, float, bool);
+		~Transaction();
 
 		Date   GetDate();
-		int    GetModeNum();
+		int    GetModelNum();
 		float  GetPrice();
 		bool   HasWarranty();
 		string PrintTrans();
+		bool operator<(const Transaction&);
+
 
 	private:
 		Date  tranDate;

@@ -85,3 +85,25 @@ string Date::DisplayDate() const
 	return output.str();
 }
 
+bool Date::operator<(const Date& other){
+	bool lessThan = false;
+		if(dateYear < other.dateYear){
+			lessThan = true;
+		}
+		else{
+			if(dateYear == other.dateYear){
+				if(dateMonth < other.dateMonth)
+				{
+					lessThan = true;
+				}
+				if(dateMonth == other.dateMonth){
+					if(dateDay < dateDay)
+					{
+						lessThan = true;
+					}
+				}
+			}
+		}
+		return lessThan;
+}
+

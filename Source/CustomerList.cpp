@@ -23,18 +23,18 @@ string CustomerList::PrintList(){
 	return output.str();
 }
 
-//string CustomerList::PrintList(bool isKey){
-//	Node<User>* myUser;
-//	ostringstream output;
-//	myUser = userList.GetHead();
-//
-//	while(myUser != NULL)
-//	{
-//		if(myUser->GetData().GetKey()){
-//		output << myUser->GetData().PrintUser();
-//		}
-//		myUser = myUser->GetNext();
-//	}
-//
-//	return output.str();
-//}
+string CustomerList::PrintList(bool isKey){
+	Node<User>* myUser;
+	ostringstream output;
+	myUser = userList.GetHead();
+
+	while(myUser != NULL)
+	{
+		if(myUser->GetData().GetKey()){
+		output << myUser->GetData().PrintUser();
+		}
+		myUser = myUser->GetNext();
+	}
+
+	return output.str();
+}

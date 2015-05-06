@@ -5,25 +5,12 @@ int main(){
 
 	CustomerList myList;
 	User myUser;
-	User newUser("bob");
+	Transaction myTrans;
 
-
-	myList.AddCust(myUser);
-	myList.AddCust(newUser);
-
-	newUser.SetName("matt");
-	myUser.SetName("allan");
-
-	myList.AddCust(myUser);
-	myList.AddCust(newUser);
-
-	newUser.SetName("datt");
-	myUser.SetName("lsllan");
-	myList.AddCust(myUser);
-	myList.AddCust(newUser);
-
-	cout << myList.PrintList();
-
+	myUser.AddTransaction(myTrans);
+	myUser.AddTransaction(myTrans);
+	myUser.AddTransaction(myTrans);
+	cout << myUser.OutputTransactions();
 
 //	int menuOption;   //PROC - used to process user input and decide which menu
 //					  //       paths to take

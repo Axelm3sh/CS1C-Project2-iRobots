@@ -23,6 +23,7 @@ public:
 	void AddNode(Node<Type>* newNode, int location);
 	void DeleteNode(int);
 	void ClearList();
+	LinkList<Type>& operator=(const LinkList<Type>&);
 	Node<Type>* GetHead();
 
 	string OutputList();
@@ -344,6 +345,20 @@ string LinkList<Type>::OutputList()
 template<class Type>
 int LinkList<Type>::GetSize(){
 	return size;
+}
+
+template<class Type>
+LinkList<Type>& LinkList<Type>::operator=(const LinkList<Type>& other){
+	Node<Type>* sptr;
+
+	sptr = other.head;
+
+	while(sptr != NULL)
+	{
+		AddNode(sptr);
+		sptr = sptr->GetNext();
+	}
+	return *this;
 }
 
 

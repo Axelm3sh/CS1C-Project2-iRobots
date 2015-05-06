@@ -29,7 +29,7 @@ public:
 	string GetTestimonial(int position);
 
 private:
-	vector<String> testimonials;
+	vector<string> testimonials;
 	int count;
 
 };

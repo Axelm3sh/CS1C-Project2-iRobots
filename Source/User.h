@@ -29,21 +29,23 @@ public:
 	void RequestPamphlet();
 	bool ContactShop();
 
+	void AddTransaction(Transaction);
+
 	string GetName();
 	bool   GetKey();
 	string GetRating();
 	bool   GetIsAdmin();
 	string PrintUser();
-
-
+	string OutputTransactions();
+	User& operator=(const User&);
 
 private:
-	string 			name;
-	string 			address;
-	bool   			key;
-	string 			rating;
-	//LinkList<Transaction> myTransactions;
-	bool   			isAdmin;
+	string 				  name;
+	string 				  address;
+	bool   				  key;
+	string 				  rating;
+	LinkList<Transaction> myTransactions;
+	bool   				  isAdmin;
 
 };
 

@@ -38,6 +38,7 @@ public:
 	int  GetYear()  const;
 	int  GetMonth() const;
 	int  GetDay()   const;
+	bool operator<(const Date&);
 
 	// Displays in MM/DD/YYYY format
 	string DisplayDate() const;

@@ -51,5 +51,43 @@ string User::GetName(){
 bool User::operator<(const User& other){
 
 	return (name < other.name);
+}
 
+bool User::GetKey(){
+
+	return key;
+}
+
+void User::AddTransaction(Transaction newTrans){
+	Node<Transaction>* tranPtr;
+	tranPtr = new Node<Transaction>;
+	tranPtr->SetData(newTrans);
+	myTransactions.AddNode(tranPtr);
+
+}
+
+string User::OutputTransactions(){
+	Node<Transaction>* tranPtr;
+	ostringstream output;
+	tranPtr = myTransactions.GetHead();
+
+	while(tranPtr != NULL)
+	{
+		output << tranPtr->GetData().PrintTrans();
+		tranPtr = tranPtr->GetNext();
+	}
+
+	return output.str();
+}
+
+User& User::operator=(const User& other){
+
+	name    = other.name;
+	address = other.address;
+	key     = other.key;
+	rating  = other.rating;
+	isAdmin = other.isAdmin;
+	myTransactions = other.myTransactions;
+
+	return *this;
 }
