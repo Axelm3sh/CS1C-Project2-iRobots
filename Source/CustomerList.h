@@ -11,11 +11,13 @@
 #include <string>
 #include "User.h"
 #include "linkListTemplate.h"
+#include  <fstream>
 using namespace std;
 
 class CustomerList{
 
 public:
+	CustomerList(ifstream&);
 	~CustomerList();
 	void AddCust(User);
 	void RemoveCust(string name);

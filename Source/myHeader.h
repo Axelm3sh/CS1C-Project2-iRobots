@@ -8,6 +8,7 @@
 #include <ios>
 #include <sstream>
 #include <iomanip>
+#include <fstream>
 #include "Date.h"
 #include "nodeTemplate.h"
 #include "CustomerList.h"
@@ -21,7 +22,7 @@ const string login =
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 
-const string mainMenu =
+const string mainMenuUser =
 		"[1] iRobot Shop\n"
 		"[2] GET INFORMATION\n"
 		"[3] TESTIMONIALS\n"

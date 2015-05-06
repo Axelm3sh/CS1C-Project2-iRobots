@@ -350,6 +350,7 @@ template<class Type>
 LinkList<Type>& LinkList<Type>::operator=(const LinkList<Type>& other){
 	Node<Type>* sptr;
 
+
 	sptr = other.head;
 
 	while(sptr != NULL)
@@ -357,7 +358,6 @@ LinkList<Type>& LinkList<Type>::operator=(const LinkList<Type>& other){
 		AddNode(sptr);
 		sptr = sptr->GetNext();
 	}
-
 
 	return *this;
 }

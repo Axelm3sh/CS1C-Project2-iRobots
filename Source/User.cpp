@@ -8,6 +8,17 @@ User::User(){
 	isAdmin  = false;
 }
 
+User::User(const User& other) {
+	name    = other.name;
+	address = other.address;
+	key     = other.key;
+	rating  = other.rating;
+	isAdmin = other.isAdmin;
+	myTransactions = other.myTransactions;
+}
+
+
+
 User::User(string myName){
 	name     = myName;
 	address  = "sdkfjds2 22 ";
@@ -21,6 +32,15 @@ User::~User(){
 
 }
 
+void User::SetValues(string myName, string myAddress, bool myKey, string myRating){
+
+	 name             = myName;
+	 address          = myAddress;
+	 key              = myKey;
+	 rating           = myRating;
+}
+
+
 string User::PrintUser(){
 	ostringstream output;
 
@@ -29,9 +49,9 @@ string User::PrintUser(){
 	output << "Rating    : " << rating << endl;
 	output << "Key       : ";
 	if(key)
-		output << "yes";
+		output << "Yes";
 	else
-		output << "no";
+		output << "Nice To Have";
 	output << endl;
 
 	return output.str();

@@ -18,9 +18,12 @@ class User{
 
 public:
 	User();
+	//copy constructor
+	User(const User&);
 	User(string);
 	~User();
 
+	void SetValues(string, string, bool, string);
 	void SetName(string);
 	void SetRating(string);
 	void SetKey(bool);

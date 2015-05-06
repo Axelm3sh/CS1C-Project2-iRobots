@@ -1,5 +1,39 @@
 #include "CustomerList.h"
 
+	CustomerList::CustomerList(ifstream& inFile){
+		User newUser;
+		Transaction myTrans;
+		string address;
+		string 				  myName;
+		string 				  myAddress;
+		string   			  myStringKey;
+		bool   				  myKey;
+		string 				  myRating;
+
+
+
+			while(!inFile.eof()){
+				//newUser = new User;
+				getline(inFile, myName);
+
+				getline(inFile, myAddress);
+				getline(inFile, myRating);
+				if(myRating == "key")
+				{
+					myKey = true;
+				}
+				else{
+					myKey = false;
+				}
+				getline(inFile, myStringKey);
+
+				newUser.SetValues(myName, myAddress, myKey, myRating);
+
+			    AddCust(newUser);
+
+			}
+	}
+
 CustomerList::~CustomerList(){
 	//userList.ClearList();
 }
