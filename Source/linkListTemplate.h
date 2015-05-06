@@ -26,7 +26,7 @@ public:
 	LinkList<Type>& operator=(const LinkList<Type>&);
 	Node<Type>* GetHead();
 
-	string OutputList();
+	string      OutputList();
 	int         GetSize();
 
 private:
@@ -89,7 +89,7 @@ LinkList<Type>::LinkList(const LinkList<Type>& otherList)
 template<class Type>
 LinkList<Type>::~LinkList()
 {
-	ClearList();
+	//ClearList();
 }
 
 //add a new node to the LinkList
@@ -245,7 +245,6 @@ void LinkList<Type>::ClearList(){
 	head = NULL;
 	tail = NULL;
 	delete sptr;
-
 }
 
 //Returns the head
@@ -358,6 +357,8 @@ LinkList<Type>& LinkList<Type>::operator=(const LinkList<Type>& other){
 		AddNode(sptr);
 		sptr = sptr->GetNext();
 	}
+
+
 	return *this;
 }
 

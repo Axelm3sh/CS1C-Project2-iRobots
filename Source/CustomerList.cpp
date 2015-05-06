@@ -1,5 +1,9 @@
 #include "CustomerList.h"
 
+CustomerList::~CustomerList(){
+	//userList.ClearList();
+}
+
 void CustomerList::AddCust(User newUser){
 
 	Node<User>* myUser;
@@ -9,7 +13,7 @@ void CustomerList::AddCust(User newUser){
 }
 
 
-string CustomerList::PrintList(){
+string CustomerList::PrintCustList(){
 	Node<User>* myUser;
 	ostringstream output;
 	myUser = userList.GetHead();
@@ -23,7 +27,7 @@ string CustomerList::PrintList(){
 	return output.str();
 }
 
-string CustomerList::PrintList(bool isKey){
+string CustomerList::PrintCustList(bool isKey){
 	Node<User>* myUser;
 	ostringstream output;
 	myUser = userList.GetHead();
@@ -38,3 +42,20 @@ string CustomerList::PrintList(bool isKey){
 
 	return output.str();
 }
+
+string CustomerList::PrintCustWithTrans(){
+	Node<User>* myUser;
+	ostringstream output;
+	myUser = userList.GetHead();
+
+	while(myUser != NULL)
+	{
+		output << myUser->GetData().PrintUser();
+		output << "\nOutputting all transactions for " << myUser->GetData().GetName() << endl;
+		output << myUser->GetData().OutputTransactions();
+		myUser = myUser->GetNext();
+	}
+
+	return output.str();
+}
+

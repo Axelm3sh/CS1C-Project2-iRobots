@@ -18,6 +18,7 @@ Transaction::~Transaction(){
 
 }
 
+
 Date Transaction::GetDate(){
 	return tranDate;
 }
@@ -39,11 +40,16 @@ string Transaction::PrintTrans(){
 
 	output << "\nDate:             "   << tranDate.DisplayDate();
 	output << "\nModel Number:     "   << modelNum;
-	output << "\nPrice:             $";
-	setprecision(2);
-	output << fixed;
+	output << "\nPrice:            $";
+	output << setprecision(2)<< fixed;
 	output << price;
-	output << "\nMaintenance Plan: " << maintenance;
+	output << "\nMaintenance Plan: ";
+	if(maintenance){
+		output << "Yes";
+	}
+	else{
+		output << "No";
+	}
 	output << endl;
 
 	return output.str();

@@ -3,14 +3,6 @@
 
 int main(){
 
-	CustomerList myList;
-	User myUser;
-	Transaction myTrans;
-
-	myUser.AddTransaction(myTrans);
-	myUser.AddTransaction(myTrans);
-	myUser.AddTransaction(myTrans);
-	cout << myUser.OutputTransactions();
 
 //	int menuOption;   //PROC - used to process user input and decide which menu
 //					  //       paths to take

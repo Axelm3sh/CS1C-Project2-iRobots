@@ -16,12 +16,14 @@ using namespace std;
 class CustomerList{
 
 public:
+	~CustomerList();
 	void AddCust(User);
 	void RemoveCust(string name);
 	void SortListByName();
 	void SortListByNameKeyOnly();
-	string PrintList();
-	string PrintList(bool keyOnly);
+	string PrintCustList();
+	string PrintCustList(bool keyOnly);
+	string PrintCustWithTrans();
 	//MakePurchase
 	//EditPrevTransactions
 

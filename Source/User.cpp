@@ -14,6 +14,7 @@ User::User(string myName){
 	key      = true;
 	rating   = " 77";
 	isAdmin  = false;
+//	myTransactions.ClearList();
 }
 
 User::~User(){
