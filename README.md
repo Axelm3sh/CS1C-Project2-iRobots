@@ -9,9 +9,9 @@ The iRobotsTheBomb on-line pamphlet must:
 
 >1.	Provide a help option to explain how to operate your program
 
->2.	Contain a sales pitch that includes key selling points – keeping the target market in mind.
+>2.	Contain a sales pitch that includes key selling points – keeping the target market in mind.// 
 
->3.	Identify a list of physical environments that are supported
+>3.	Identify a list of physical environments that are supported// 
 
 >4.	Provide a one paragraph – concept of operations (what does it do and how it does it)
 
@@ -45,6 +45,8 @@ The iRobotsTheBomb on-line pamphlet must:
 
 >17.	After a pamphlet is sent to a perspective customer, the customer list should reflect the fact that the pamphlet was sent.  
 
->18.	Produce a customer listing sorted by customer name (at any time) - administrator only  
+>18.	Produce a customer listing sorted by customer name (at any time) - administrator only//  
 
->19.	Produce a customer listing sorted by customer name (at any time) containing only the “key” customers. – administrator only  
+>19.	Produce a customer listing sorted by customer name (at any time) containing only the “key” customers. – administrator only//  
+
+
