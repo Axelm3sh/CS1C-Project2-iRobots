@@ -1,5 +1,7 @@
 #include "myHeader.h"
 #include "BoundaryCheck.cpp"
+#include "Input.h"
+#include "Testimonials.h"
 
 int main(){
 
