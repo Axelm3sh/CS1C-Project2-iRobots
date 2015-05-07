@@ -14,6 +14,10 @@ int main(){
 
 	cout << myList.PrintCustList();
 
+//	Not Working?? VVVV
+//	myList.RemoveCust("Saddleback College");
+//
+//	cout << myList.PrintCustList();
 
 	//the menu down below is updated!!!
 

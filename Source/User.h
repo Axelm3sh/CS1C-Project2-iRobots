@@ -23,11 +23,12 @@ public:
 	User(string);
 	~User();
 
-	void SetValues(string, string, bool, string);
+	void SetValues(string, string, string, bool, string);
 	void SetName(string);
 	void SetRating(string);
 	void SetKey(bool);
 	void SetAddress(string);
+	void SetAddress2(string);
 	bool operator<(const User&);
 	void RequestPamphlet();
 	bool ContactShop();
@@ -44,7 +45,8 @@ public:
 
 private:
 	string 				  name;
-	string 				  address;
+	string 				  address1;
+	string				  address2;
 	bool   				  key;
 	string 				  rating;
 	LinkList<Transaction> myTransactions;

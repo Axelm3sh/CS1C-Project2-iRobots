@@ -2,7 +2,8 @@
 
 User::User(){
 	name     = "sdfadsf";
-	address  = "sdkfjds2 22 ";
+	address1 = "sdkfjds2 22 ";
+	address2 = "city, state, zipcode";
 	key      = true;
 	rating   = " 77";
 	isAdmin  = false;
@@ -10,7 +11,8 @@ User::User(){
 
 User::User(const User& other) {
 	name    = other.name;
-	address = other.address;
+	address1 = other.address1;
+	address2 = other.address2;
 	key     = other.key;
 	rating  = other.rating;
 	isAdmin = other.isAdmin;
@@ -21,7 +23,8 @@ User::User(const User& other) {
 
 User::User(string myName){
 	name     = myName;
-	address  = "sdkfjds2 22 ";
+	address1 = "sdkfjds2 22 ";
+	address2 = "city, state, zipcode";
 	key      = true;
 	rating   = " 77";
 	isAdmin  = false;
@@ -32,20 +35,25 @@ User::~User(){
 
 }
 
-void User::SetValues(string myName, string myAddress, bool myKey, string myRating){
+void User::SetValues(string myName, string myAddress, string myAddress2,
+					 bool myKey, string myRating)
+{
 
 	 name             = myName;
-	 address          = myAddress;
+	 address1         = myAddress;
+	 address2		  = myAddress2;
 	 key              = myKey;
 	 rating           = myRating;
 }
 
 
-string User::PrintUser(){
+string User::PrintUser()
+{
 	ostringstream output;
 
 	output << "\nCustomer: " << name << endl;
-	output << "Address   : " << address << endl;
+	output << "Address   : " << address1 << endl;
+	output << "            " << address2 << endl;
 	output << "Rating    : " << rating << endl;
 	output << "Key       : ";
 	if(key)
@@ -57,29 +65,40 @@ string User::PrintUser(){
 	return output.str();
 }
 
-void User::SetAddress(string addr){
-		address = addr;
+void User::SetAddress(string addr)
+{
+		address1 = addr;
 }
 
-void User::SetName(string myName){
+void User::SetAddress2(string addr)
+{
+		address2 = addr;
+}
+
+void User::SetName(string myName)
+{
 		name = myName;
 }
 
-string User::GetName(){
+string User::GetName()
+{
 	return name;
 }
 
-bool User::operator<(const User& other){
+bool User::operator<(const User& other)
+{
 
 	return (name < other.name);
 }
 
-bool User::GetKey(){
+bool User::GetKey()
+{
 
 	return key;
 }
 
-void User::AddTransaction(Transaction newTrans){
+void User::AddTransaction(Transaction newTrans)
+{
 	Node<Transaction>* tranPtr;
 	tranPtr = new Node<Transaction>;
 	tranPtr->SetData(newTrans);
@@ -87,7 +106,8 @@ void User::AddTransaction(Transaction newTrans){
 
 }
 
-string User::OutputTransactions(){
+string User::OutputTransactions()
+{
 	Node<Transaction>* tranPtr;
 	ostringstream output;
 	tranPtr = myTransactions.GetHead();
@@ -101,13 +121,15 @@ string User::OutputTransactions(){
 	return output.str();
 }
 
-User& User::operator=(const User& other){
+User& User::operator=(const User& other)
+{
 
-	name    = other.name;
-	address = other.address;
-	key     = other.key;
-	rating  = other.rating;
-	isAdmin = other.isAdmin;
+	name    	= other.name;
+	address1	= other.address1;
+	address2	= other.address2;
+	key     	= other.key;
+	rating  	= other.rating;
+	isAdmin 	= other.isAdmin;
 	myTransactions = other.myTransactions;
 
 	return *this;
