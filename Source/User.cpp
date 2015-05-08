@@ -7,6 +7,7 @@ User::User(){
 	key      = true;
 	rating   = " 77";
 	isAdmin  = false;
+	requestPamph = false;
 }
 
 User::User(const User& other) {
@@ -17,9 +18,8 @@ User::User(const User& other) {
 	rating  = other.rating;
 	isAdmin = other.isAdmin;
 	myTransactions = other.myTransactions;
+	requestPamph = other.requestPamph;
 }
-
-
 
 User::User(string myName){
 	name     = myName;
@@ -28,11 +28,19 @@ User::User(string myName){
 	key      = true;
 	rating   = " 77";
 	isAdmin  = false;
+	 requestPamph = false;
 //	myTransactions.ClearList();
 }
 
 User::~User(){
 
+}
+
+void User::SetRating(string myRate){
+	rating = myRate;
+}
+void User::SetKey(bool myKey){
+	key = myKey;
 }
 
 void User::SetValues(string myName, string myAddress, string myAddress2,
@@ -51,7 +59,7 @@ string User::PrintUser()
 {
 	ostringstream output;
 
-	output << "\nCustomer: " << name << endl;
+	output << "\nCustomer  : " << name << endl;
 	output << "Address   : " << address1 << endl;
 	output << "            " << address2 << endl;
 	output << "Rating    : " << rating << endl;
@@ -61,6 +69,21 @@ string User::PrintUser()
 	else
 		output << "Nice To Have";
 	output << endl;
+
+	return output.str();
+}
+
+string User::PrintUserToFile(){
+	ostringstream output;
+
+	output << name << endl;
+	output << address1 << endl;
+	output << address2 << endl;
+	output << rating << endl;
+	if(key)
+		output << "key";
+	else
+		output << "nice to have";
 
 	return output.str();
 }
@@ -111,7 +134,10 @@ string User::OutputTransactions()
 	Node<Transaction>* tranPtr;
 	ostringstream output;
 	tranPtr = myTransactions.GetHead();
-
+if(tranPtr == NULL)
+{
+	output << "\nNo transactions have been made!";
+}
 	while(tranPtr != NULL)
 	{
 		output << tranPtr->GetData().PrintTrans();
@@ -134,3 +160,15 @@ User& User::operator=(const User& other)
 
 	return *this;
 }
+
+void User::RequestPamphlet(){
+	if(requestPamph){
+		cout << "\nPamphlet has already been requested!";
+	}
+	else{
+		cout << "\nPamphlet has been requested!";
+		requestPamph = true;
+	}
+
+}
+

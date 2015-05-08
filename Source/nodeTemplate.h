@@ -21,7 +21,7 @@ public:
 
 	Node<Type>* GetNext();
 	Node<Type>* GetPrev();
-	Type        GetData();
+	Type&        GetData();
 
 private:
 	Node<Type>* next;
@@ -82,7 +82,7 @@ Node<Type>* Node<Type>::GetPrev()
 
 //Return a the current data as it's data type
 template<class Type>
-Type Node<Type>::GetData()
+Type& Node<Type>::GetData()
 {
 	return data;
 }

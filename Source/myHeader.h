@@ -124,7 +124,19 @@ const string paymentPlans =
 		"Recommended for institutional users dealing with sophisticated terrorists\n"
 		"$500000\n\n";
 
-const string warrentyInfo =
+const string buyMenu =
+		  "[1] Silver   - $50000"
+		"\n[2] Gold     - $250000"
+		"\n[3] Platinum - $500000"
+		"\n[0] Exit"
+		"\nPlease Select a Robot: ";
+
+const string contactUs =
+		"If you like to directly contact a Customer Service Representative,\n"
+		"Please Call us at: (949) 913-1073\n"
+		"or Email us at: YoloSwagMAster@iRobot.org";
+
+const string warrantyInfo =
 		"Maintenance Plan:\n"
 		"The annual cost of the plan is 15% of the model of the robot originally purchased.\n"
 		"It covers all routine maintenance and qualification, along with replacement of consumable parts,\n"
@@ -134,5 +146,13 @@ const string warrentyInfo =
 		"For the first 24 months after robot purchase, all malfunctions due to manufacturing \n"
 		"or quality defects will be repaired at the expense of the manufacturer. \n"
 		"This does not include damage caused by user error.\n\n";
+
+const string pamphMenu =
+		"\n[1] - YES"
+		"\n[2] - NO"
+		"\n[0] - EXIT"
+		"\nWould you like to request a pamphlet: ";
+
+
 
 #endif /* MYHEADER_H_ */

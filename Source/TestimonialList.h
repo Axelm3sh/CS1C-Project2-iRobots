@@ -1,13 +1,14 @@
 
 
-#ifndef TESTIMONIALS_H_
-#define TESTIMONIALS_H_
+#ifndef TESTIMONIALLIST_H_
+#define TESTIMONIALLIST_H_
 
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
 #include <vector>
+#include "TestimonialNode.h"
 using namespace std;
 
 class TestimonialList
@@ -16,15 +17,13 @@ public:
 	TestimonialList();
 	~TestimonialList();
 
-	void Add(string newTestimonial);
-	string GetTestimonial(int position);
+	void Add(TestimonialNode newTestimonial);
+	TestimonialNode GetTestimonial(int position);
 	void PrintAll();
 	int GetCount();
 
-
-
 private:
-	vector <string> Testimonials;
+	vector <TestimonialNode> Testimonials;
 
 };
 

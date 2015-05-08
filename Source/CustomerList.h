@@ -21,11 +21,15 @@ public:
 	~CustomerList();
 	void AddCust(User);
 	void RemoveCust(string name);
+	Node<User>* SearchListByName(string name);
 	void SortListByName();
 	void SortListByNameKeyOnly();
 	string PrintCustList();
+	string SaveFile();
 	string PrintCustList(bool keyOnly);
 	string PrintCustWithTrans();
+	void EditCustomer(string name);
+
 	//MakePurchase
 	//EditPrevTransactions
 

@@ -40,6 +40,7 @@ public:
 	string GetRating();
 	bool   GetIsAdmin();
 	string PrintUser();
+	string PrintUserToFile();
 	string OutputTransactions();
 	User& operator=(const User&);
 
@@ -51,6 +52,7 @@ private:
 	string 				  rating;
 	LinkList<Transaction> myTransactions;
 	bool   				  isAdmin;
+	bool 				  requestPamph;
 
 };
 
