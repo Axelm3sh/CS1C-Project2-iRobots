@@ -37,6 +37,8 @@ public:
 
 	string GetName();
 	bool   GetKey();
+	string GetAddressLine1();
+	string GetAddressLine2();
 	string GetRating();
 	bool   GetIsAdmin();
 	string PrintUser();

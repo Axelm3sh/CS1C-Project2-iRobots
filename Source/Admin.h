@@ -9,6 +9,7 @@
 #define ADMIN_H_
 
 #include <string>
+#include "User.h"
 using namespace std;
 
 class Admin: public User{

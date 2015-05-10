@@ -134,10 +134,11 @@ string User::OutputTransactions()
 	Node<Transaction>* tranPtr;
 	ostringstream output;
 	tranPtr = myTransactions.GetHead();
-if(tranPtr == NULL)
-{
-	output << "\nNo transactions have been made!";
-}
+
+	if(tranPtr != NULL){
+		output << "Customer Name:      " << name << endl;
+		output << "--------------------------------------\n";
+	}
 	while(tranPtr != NULL)
 	{
 		output << tranPtr->GetData().PrintTrans();
@@ -169,6 +170,12 @@ void User::RequestPamphlet(){
 		cout << "\nPamphlet has been requested!";
 		requestPamph = true;
 	}
-
+	cout << endl;
 }
 
+string User::GetAddressLine1(){
+	return address1;
+}
+string User::GetAddressLine2(){
+	return address2;
+}

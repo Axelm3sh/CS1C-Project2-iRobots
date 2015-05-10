@@ -27,6 +27,7 @@ public:
 	string PrintCustList();
 	string SaveFile();
 	string PrintCustList(bool keyOnly);
+	void SaveTransactions(string);
 	string PrintCustWithTrans();
 	void EditCustomer(string name);
 

@@ -7,12 +7,39 @@ Transaction::Transaction(){
 	maintenance = true;
 }
 
-Transaction::Transaction(Date myDate, int model, float cost, bool maintPlan){
+Transaction::Transaction(Date myDate, int model, bool maintPlan, int quant){
+
 	tranDate = myDate;
-	modelNum = model;
-	price = cost;
-	maintenance = maintPlan;
+
+	switch(model){
+	case 1:
+		modelNum = model;
+		price = 50000;
+		maintenance = maintPlan;
+		break;
+
+	case 2:
+		modelNum = model;
+		price = 250000;
+		maintenance = maintPlan;
+		break;
+
+
+	case 3 :
+		modelNum = model;
+		price = 500000;
+		maintenance = maintPlan;
+	}
+
+
+	quantity = quant;
+	totalSpent = quant*price;
+	if(maintenance){
+		totalSpent += quant*(price*.15);
+	}
 }
+
+
 
 Transaction::~Transaction(){
 
@@ -38,12 +65,16 @@ bool Transaction::HasWarranty(){
 string Transaction::PrintTrans(){
 	ostringstream output;
 
-	output << "\nDate:             "   << tranDate.DisplayDate();
-	output << "\nModel Number:     "   << modelNum;
-	output << "\nPrice:            $";
+	output << "Date:               "   << tranDate.DisplayDate();
+
+	//cant figure this one out, causes runtime errors
+	//output << "Transaction Date:   "   << ctime(&myTime);
+	output << "\nModel Number:       "   << modelNum;
+	output << "\nPrice Per Bot:      $";
 	output << setprecision(2)<< fixed;
 	output << price;
-	output << "\nMaintenance Plan: ";
+	output << "\nQuantity:           " << quantity;
+	output << "\nMaintenance Plan:   ";
 	if(maintenance){
 		output << "Yes";
 	}
@@ -51,6 +82,8 @@ string Transaction::PrintTrans(){
 		output << "No";
 	}
 	output << endl;
+	output << "Total Cost:         $" << totalSpent;
+	output << endl << endl;
 
 	return output.str();
 }

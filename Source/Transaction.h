@@ -12,13 +12,14 @@
 #include <sstream>
 #include <iomanip>
 #include "Date.h"
+#include <time.h>
 using namespace std;
 
 class Transaction {
 	public:
 
 		Transaction();
-		Transaction(Date, int, float, bool);
+		Transaction(Date, int, bool, int);
 		~Transaction();
 
 		Date   GetDate();
@@ -34,6 +35,10 @@ class Transaction {
 		int   modelNum;
 		float price;
 		bool  maintenance;
+		int   quantity;
+		float totalSpent;
+	    time_t myTime;
+	    tm     timeStruct;
 
 };
 

@@ -91,8 +91,8 @@ string CustomerList::PrintCustWithTrans(){
 	{
 		//output << "\nCustomer Info:\n";
 		//output << myUser->GetData().PrintUser();
-		output << "Outputting all transactions for " << myUser->GetData().GetName() << endl;
-		output << "---------------------------------------------------";
+		//output << "Outputting all transactions for " << myUser->GetData().GetName() << endl;
+		//output << "---------------------------------------------------";
 		output << myUser->GetData().OutputTransactions();
 		myUser = myUser->GetNext();
 	}
@@ -200,7 +200,7 @@ Node<User>* CustomerList::SearchListByName(string name)
 
 	while(searchPtr != NULL && !found) //Make sure list isn't empty
 	{
-		if(searchPtr != NULL && targetUser.GetName() == name) //Check Element
+		if(targetUser.GetName() == name) //Check Element
 		{
 				found = true;
 		}
@@ -241,7 +241,7 @@ void CustomerList::EditCustomer(string name)
 	bool exit = false;
 
 
-	string menu = "What information would you like to edit?\n"
+	string menu = "\nWhat information would you like to edit?\n"
 			       	    " 1) Name\n"
 				   	    " 2) Address 1\n"
 						" 3) Address 2\n"
@@ -275,9 +275,6 @@ void CustomerList::EditCustomer(string name)
 				case 1: cout << "Enter new name: ";
 						getline(cin,newName);
 						searchPtr->GetData().SetName(newName);
-						cout << searchPtr->GetData().GetName();
-						cin.ignore();
-
 						break;
 				case 2: cout << "Enter new Address 1: ";
 						getline(cin,newAddressOne);
@@ -339,4 +336,31 @@ void CustomerList::EditCustomer(string name)
 	delete searchPtr;
 }
 
+void CustomerList::SaveTransactions(string fileName){
+	Node<User>* myUser;
+	ostringstream output;
+	myUser = userList.GetHead();
+	ifstream inFile;
+	ofstream oFile;
+    string allTrans;
 
+    //read in previous file so we can add to it without deleting
+	//previous contents
+	inFile.open(fileName.c_str());
+	while(!inFile.eof()){
+		getline(inFile, allTrans);
+	output << allTrans << endl;
+	}
+	inFile.close();
+
+	oFile.open(fileName.c_str());
+	oFile << output.str();
+
+	while(myUser != NULL)
+	{
+		oFile << myUser->GetData().OutputTransactions();
+		myUser = myUser->GetNext();
+	}
+
+	oFile.close();
+}
