@@ -11,7 +11,7 @@ int main(){
 	myList = new CustomerList(inFile);
 	inFile.close();
 
-	bool loggedIn; //PROC - used to check if successful loggin
+	bool loggedIn; //PROC - used to check if successful login
 
 	string       userName;     //IN   - used to search for "logging in"
 	Node<User>*  currentUser; //PROC - used to access menu options as current user
@@ -49,6 +49,10 @@ int main(){
 	//check to see if a trans was made at all
 	bool transactionMade = false;
 
+	//Used for Testimonials
+	TestimonialList testList;
+	TestimonialNode newNode;
+	testList = TakeInput();
 
 	oFile.open("myFile.txt");
 	oFile << myList->SaveFile();
@@ -69,6 +73,8 @@ int main(){
 	loggedIn = false;
 
 
+	Admin myAdmin;
+	string adminPassword;
 
 	menuOption = BoundaryCheck(login, 0, 3);
 
@@ -99,20 +105,39 @@ int main(){
 		}//end while(userName != "exit" && !loggedIn)
 		break;
 	case 2:
-		endBound = adminEndBound;
-		mainMenu  = mainMenuAdmin;
-		cout << "\nHello Administrator, Welcome to the iRobot Shop!\n";
-		isAdmin = true;
+		cout << "\nEnter Administrator Password: ";
+		getline(cin,adminPassword);
+		//validate  admin privledges
+		while(adminPassword != "exit" && !loggedIn)
+		{
+			if(adminPassword == myAdmin.GetPassword())
+			{
+
+				endBound = adminEndBound;
+				mainMenu  = mainMenuAdmin;
+				cout << "\nHello Administrator, Welcome to the iRobot Shop!\n";
+				isAdmin = true;
+				loggedIn = true;
+			}
+			else
+			{
+				cout << "\nPlease try again or enter 'exit' to quit program: ";
+					getline(cin,adminPassword);
+			}
+		}//end while
 		break;
 	case 3:
 		endBound = guestEndBound;
 		mainMenu  = mainMenuGuest;
 		loggedIn = true;
-		cout << "\nHello Perspective Customer, Welcome to the iRobot Shop!\n";
+		cout << "\nHello Prospective Customer, Welcome to the iRobot Shop!\n";
+		break;
+	default:
+		userName = "exit";
 	}
 
 //check to see if unvalidated user chose to exit
-if(userName != "exit"){
+if(userName != "exit" && adminPassword != "exit"){
 
 	menuOption = BoundaryCheck(mainMenu, 0, endBound);
 
@@ -251,15 +276,25 @@ if(userName != "exit"){
 			switch(menuOption)
 			{
 			case 1:
-				cout << "...read testimonials...\n";
+				cout << "Reviews from previous purchasers of the iRobot Bomb Detector:\n";
+
+				testList.PrintAll();
 
 				cout << "Press any key to continue";
 				cin.ignore();
 				break;
 			case 2:
-				cout << "...add testimonials...\n";
+				cout << "If you have purchased a bomb detector in the past, please give your feedback.\n";
 
-				cout << "Press any key to continue";
+				newNode = NewTestimonial();
+
+				if(newNode.user != "")
+				{
+					testList.Add(newNode);
+
+					WriteToFile(testList);
+				}
+				cout << "\nPress any key to continue\n";
 				cin.ignore();
 			}
 			break;
@@ -306,12 +341,6 @@ if(userName != "exit"){
 							"If you want to make a purchase add yourself as a"
 							"new customer then log in as a user!\n\n";
 				}
-
-				cout << "Press any key to continue";
-				cin.ignore();
-				break;
-			case 3:
-				cout << "...testimonial operations...\n";//TODO fixplz
 
 				cout << "Press any key to continue";
 				cin.ignore();
@@ -400,6 +429,8 @@ if(userName != "exit"){
 	oFile << myList->PrintCustList();
 	oFile.close();
 }
+
+	cout << "\nThank you for using this program";
 
 return 0;
 }

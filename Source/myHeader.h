@@ -14,6 +14,9 @@
 #include "nodeTemplate.h"
 #include "CustomerList.h"
 #include "BoundaryCheck.h"
+#include "Input.h"
+#include "TestimonialList.h"
+#include "TestimonialNode.h"
 
 using namespace std;
 
@@ -21,7 +24,7 @@ const string pamphletFile = "requestPamphlet.txt";
 
 const string login =
 		"Welcome to the iRobot Shop!\n"
-		"[1] User\n"
+		"[1] Existing User\n"
 		"[2] Admin\n"
 		"[3] Guest\n"
 		"[0] EXIT\n"
@@ -62,7 +65,7 @@ const string shopMenu =
 
 const string testimonialMenu =
 		"[1] READ TESTIMONIALS\n"
-		  "[2] ADD TESTIMONIAL\n"
+		"[2] ADD TESTIMONIAL\n"
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 
@@ -172,6 +175,11 @@ const string pamphMenu =
 		"\n[2] - NO"
 		"\n[0] - EXIT"
 		"\nWould you like to request a pamphlet: ";
+
+const string robotType = "\nPlease Enter Model of Robot You Bought:\n"
+		"1. Silver\n"
+		"2. Gold\n"
+		"3. Platinum\n";
 
 
 
