@@ -17,7 +17,6 @@ int main(){
 	Node<User>*  currentUser; //PROC - used to access menu options as current user
 
 	Transaction* myTrans;
-	int          buyRobot;
 	int          robotQuantity;
 	int			 robotModel;
 	bool         maintBool;
@@ -42,8 +41,8 @@ int main(){
 	time(&timeNow);
 	todayTime = localtime(&timeNow );
 	day   = todayTime->tm_mday;
-	month = todayTime->tm_mon;
-	year  = todayTime->tm_year;
+	month = todayTime->tm_mon + 1;
+	year  = (todayTime->tm_year) + 1900;
 	Date today(month, day, year);
 
 	//check to see if a trans was made at all
@@ -57,7 +56,7 @@ int main(){
 	int menuOption;   //PROC - used to process user input and decide which menu
 					  //       paths to take
 	const int userEndBound   = 4;
-	const int adminEndBound  = 6;
+	const int adminEndBound  = 7;
 	const int guestEndBound  = 3;
 	int		  endBound;
 	string    mainMenu;
@@ -108,7 +107,7 @@ int main(){
 		endBound = guestEndBound;
 		mainMenu  = mainMenuGuest;
 		loggedIn = true;
-		cout << "\nHello Perspective Customer, Welcome to the iRobot Shop!\n";
+		cout << "\nHello Prospective Customer, Welcome to the iRobot Shop!\n";
 	}
 
 //check to see if unvalidated user chose to exit
@@ -130,7 +129,7 @@ if(userName != "exit"){
 			switch(menuOption)
 			{
 			case 1:
-				cout << "...robot destription...\n";
+				cout << robotDescrip;
 
 				cout << "Press any key to continue";
 				cin.ignore();
@@ -148,7 +147,7 @@ if(userName != "exit"){
 				cin.ignore();
 				break;
 			case 4:
-				cout << "..faq...\n";
+				cout << FAQUs;
 
 				cout << "Press any key to continue";
 				cin.ignore();
@@ -235,7 +234,8 @@ if(userName != "exit"){
 
 					}//end if(menuOption == 1)
 				}//end if(pamphlet requested)
-				else{
+				else
+				{
 
 					cout << "\nYou have already requested a pamphlet this session,"
 							" iRobot has been informed\n"
@@ -303,7 +303,7 @@ if(userName != "exit"){
 				}
 				else{
 					cout << "\nAdministrators can not make purchases!\n"
-							"If you want to make a purchase add yourself as a"
+							"If you want to make a purchase add yourself as a "
 							"new customer then log in as a user!\n\n";
 				}
 
@@ -340,7 +340,6 @@ if(userName != "exit"){
 
 				userToChange.clear();
 
-
 					cout << "Press any key to continue";
 					cin.ignore();
 
@@ -376,7 +375,9 @@ if(userName != "exit"){
 				cout << "\nPress any key to continue";
 				cin.ignore();
 				}
-
+			break;
+			case 7:
+					myList->CreateNewCustomer();
 		}//end main user option switch statement
 
 		menuOption = BoundaryCheck(mainMenu, 0, endBound);

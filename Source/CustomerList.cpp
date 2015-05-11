@@ -360,6 +360,83 @@ void CustomerList::EditCustomer(string name)
 	delete searchPtr;
 }
 
+void CustomerList::CreateNewCustomer(){
+
+	string newName;
+	string newAddressOne;
+	string newAddressTwo;
+	string newRating;
+	int    rating;
+	char yesNo;
+	bool newKey = false;
+	bool valid = false;
+	User newUser;
+
+	string menu = "\nWhat information would you like to edit?\n"
+			       	    " 1) Name\n"
+				   	    " 2) Address 1\n"
+						" 3) Address 2\n"
+				   	   	" 4) Rating\n"
+				   	   	" 5) Key\n"
+						" 0) EXIT\n"
+						"Enter Command: ";
+
+	string rateMenu =     "[1] - Very Interested"
+						"\n[2] - Somewhat Interested"
+						"\n[3] - Not Interested"
+						"\n[4] - Never Call Again"
+						"\nEnter new Rating: ";
+
+			 cout << "Enter new name: ";
+			getline(cin,newName);
+
+			 cout << "Enter new Address 1: ";
+			getline(cin,newAddressOne);
+
+			 cout << "Enter new Address 2: ";
+			getline(cin,newAddressTwo);
+
+				rating = BoundaryCheck(rateMenu, 0, 4);
+
+					switch (rating){
+					case 1: newRating = "very interested";
+						break;
+					case 2: newRating = "somewhat interested";
+						break;
+					case 3: newRating = "somewhat interested";
+						break;
+					case 4:	newRating = "never call again";
+					}
+		 cout << "Set User As Key Customer(Yes/No): ";
+			cin.get(yesNo);
+			cin.ignore(100,'\n');
+			while(!valid)
+			{
+				if(toupper(yesNo) == 'Y')
+				{
+					newKey = true;
+					valid = true;
+				}
+				else if(toupper(yesNo) == 'N')
+				{
+					newKey = false;
+					valid = true;
+				}
+				else
+				{
+					cout << "Edit key user(Y/N): ";
+					cin.get(yesNo);
+					cin.ignore(100,'\n');
+				}
+			}
+
+
+			newUser.SetValues(newName, newAddressOne,
+					newAddressTwo, newKey, newRating, false);
+
+			AddCust(newUser);
+}
+
 void CustomerList::SaveTransactions(string fileName){
 	Node<User>* myUser;
 	ostringstream output;

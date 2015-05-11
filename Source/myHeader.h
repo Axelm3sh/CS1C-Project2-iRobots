@@ -49,6 +49,7 @@ const string mainMenuAdmin =
 		"[4] iRobot Shop\n"
 		"[5] EDIT CUSTOMER INFORMATION\n"
 		"[6] VIEW/PRINT CUSTOMER LIST\n"
+		"[7] ADD NEW CUSTOMER\n"
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 
@@ -102,8 +103,7 @@ const string salesPitch =
 		"everyday tasks.  Different models are specially designed to accomplish a more specific\n"
 		"set of tasks in order to function with optimum performance!\n"
 		"If you do not find exactly what you are looking for then we will gladly\n"
-		"special order and even design the iRobot of your dreams!!!\n\n"
-		"PRESS [--key to be determined--] to start your order now!\n";
+		"special order and even design the iRobot of your dreams!!!\n\n";
 
 const string suitableEnvironment =
 		"iRobots are suitable for so many environments it would take a novel\n"
@@ -154,7 +154,7 @@ const string maintPlan =
 const string contactUs =
 		"If you like to directly contact a Customer Service Representative,\n"
 		"Please Call us at: (949) 913-1073\n"
-		"or Email us at: YoloSwagMAster@iRobot.org\n";
+		"or Email us at: YoloSwagMAster@iRobot.org\n\n";
 
 const string warrantyInfo =
 		"Maintenance Plan:\n"
@@ -173,6 +173,16 @@ const string pamphMenu =
 		"\n[0] - EXIT"
 		"\nWould you like to request a pamphlet: ";
 
+const string robotDescrip =
+		"Forged from a mixture of Carbon Nanotubes and Steel Alloys, our Robots have a sleek, black\n"
+		"design with engineered aerodynamics that surpass NASA's space shuttles.\n"
+		"The outer shell of the robot will be able to resist high temperatures and is scratch-proof\n"
+		"while the inner hardware of the robot is encased in shock-resistant alloys equipped with an\n"
+		"Electronic Counter Measure device to deter security hackers from taking over the robot.\n\n";
 
+const string FAQUs =
+		"If you have more questions, contact a Service Questionnaire Representative,\n"
+		"Please Call us at: (949) 352-5309\n"
+		"or Email us at: FAQquest@iRobot.org\n\n";
 
 #endif /* MYHEADER_H_ */

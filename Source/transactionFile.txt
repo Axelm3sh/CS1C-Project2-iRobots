@@ -45,3 +45,13 @@ Quantity:           1
 Maintenance Plan:   No
 Total Cost:         $250000.00
 
+
+Customer Name:      CIA
+--------------------------------------
+Date:               04/11/115
+Model Number:       2
+Price Per Bot:      $250000.00
+Quantity:           3
+Maintenance Plan:   Yes
+Total Cost:         $862500.00
+

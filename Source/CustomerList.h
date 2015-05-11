@@ -31,6 +31,7 @@ public:
 	void SaveTransactions(string);
 	string PrintCustWithTrans();
 	void EditCustomer(string name);
+	void CreateNewCustomer();
 
 	//MakePurchase
 	//EditPrevTransactions
