@@ -7,7 +7,7 @@ User::User(){
 	key      = true;
 	rating   = " 77";
 	isAdmin  = false;
-	requestPamph = false;
+	pamphletReceived = false;
 }
 
 User::User(const User& other) {
@@ -18,7 +18,7 @@ User::User(const User& other) {
 	rating  = other.rating;
 	isAdmin = other.isAdmin;
 	myTransactions = other.myTransactions;
-	requestPamph = other.requestPamph;
+	pamphletReceived = other.pamphletReceived;
 }
 
 User::User(string myName){
@@ -28,7 +28,7 @@ User::User(string myName){
 	key      = true;
 	rating   = " 77";
 	isAdmin  = false;
-	 requestPamph = false;
+	pamphletReceived = false;
 //	myTransactions.ClearList();
 }
 
@@ -44,14 +44,15 @@ void User::SetKey(bool myKey){
 }
 
 void User::SetValues(string myName, string myAddress, string myAddress2,
-					 bool myKey, string myRating)
+					 bool myKey, string myRating, bool pamphlet)
 {
 
-	 name             = myName;
-	 address1         = myAddress;
-	 address2		  = myAddress2;
-	 key              = myKey;
-	 rating           = myRating;
+	 name              = myName;
+	 address1          = myAddress;
+	 address2		   = myAddress2;
+	 key               = myKey;
+	 rating            = myRating;
+	 pamphletReceived = pamphlet;
 }
 
 
@@ -69,7 +70,14 @@ string User::PrintUser()
 	else
 		output << "Nice To Have";
 	output << endl;
-
+	output << "Pamphlet  : ";
+	if(pamphletReceived){
+		output << "Received";
+	}
+	else{
+		output << "Not Received";
+	}
+output << endl;
 	return output.str();
 }
 
@@ -84,6 +92,14 @@ string User::PrintUserToFile(){
 		output << "key";
 	else
 		output << "nice to have";
+
+	output << endl;
+	if(pamphletReceived){
+		output << "received";
+	}
+	else{
+		output << "not received";
+	}
 
 	return output.str();
 }
@@ -134,10 +150,11 @@ string User::OutputTransactions()
 	Node<Transaction>* tranPtr;
 	ostringstream output;
 	tranPtr = myTransactions.GetHead();
-if(tranPtr == NULL)
-{
-	output << "\nNo transactions have been made!";
-}
+
+	if(tranPtr != NULL){
+		output << "Customer Name:      " << name << endl;
+		output << "--------------------------------------\n";
+	}
 	while(tranPtr != NULL)
 	{
 		output << tranPtr->GetData().PrintTrans();
@@ -162,13 +179,19 @@ User& User::operator=(const User& other)
 }
 
 void User::RequestPamphlet(){
-	if(requestPamph){
+	if(pamphletReceived){
 		cout << "\nPamphlet has already been requested!";
 	}
 	else{
 		cout << "\nPamphlet has been requested!";
-		requestPamph = true;
+		pamphletReceived = true;
 	}
-
+	cout << endl;
 }
 
+string User::GetAddressLine1(){
+	return address1;
+}
+string User::GetAddressLine2(){
+	return address2;
+}

@@ -10,6 +10,8 @@
 		string   			  myStringKey;
 		bool   				  myKey;
 		string 				  myRating;
+		string				  pampString;
+		bool				  pampBool;
 
 
 
@@ -28,9 +30,16 @@
 				else{
 					myKey = false;
 				}
+				getline(inFile, pampString);
+				if(pampString == "not received"){
+					pampBool = false;
+				}
+				else{
+					pampBool = true;
+				}
 
 				newUser.SetValues(myName, myAddress, myAddress2,
-								  myKey, myRating);
+								  myKey, myRating, pampBool);
 
 			    AddCust(newUser);
 
@@ -91,8 +100,8 @@ string CustomerList::PrintCustWithTrans(){
 	{
 		//output << "\nCustomer Info:\n";
 		//output << myUser->GetData().PrintUser();
-		output << "Outputting all transactions for " << myUser->GetData().GetName() << endl;
-		output << "---------------------------------------------------";
+		//output << "Outputting all transactions for " << myUser->GetData().GetName() << endl;
+		//output << "---------------------------------------------------";
 		output << myUser->GetData().OutputTransactions();
 		myUser = myUser->GetNext();
 	}
@@ -200,7 +209,7 @@ Node<User>* CustomerList::SearchListByName(string name)
 
 	while(searchPtr != NULL && !found) //Make sure list isn't empty
 	{
-		if(searchPtr != NULL && targetUser.GetName() == name) //Check Element
+		if(targetUser.GetName() == name) //Check Element
 		{
 				found = true;
 		}
@@ -235,13 +244,14 @@ void CustomerList::EditCustomer(string name)
 	string newAddressOne;
 	string newAddressTwo;
 	string newRating;
+	int    rating;
 	char yesNo;
 	bool newKey = false;
 	bool valid = false;
 	bool exit = false;
 
 
-	string menu = "What information would you like to edit?\n"
+	string menu = "\nWhat information would you like to edit?\n"
 			       	    " 1) Name\n"
 				   	    " 2) Address 1\n"
 						" 3) Address 2\n"
@@ -249,6 +259,12 @@ void CustomerList::EditCustomer(string name)
 				   	   	" 5) Key\n"
 						" 0) EXIT\n"
 						"Enter Command: ";
+
+	string rateMenu =     "[1] - Very Interested"
+						"\n[2] - Somewhat Interested"
+						"\n[3] - Not Interested"
+						"\n[4] - Never Call Again"
+						"\nEnter new Rating: ";
 
 
 	searchPtr = userList.GetHead(); //Assign search marker to head
@@ -264,20 +280,16 @@ void CustomerList::EditCustomer(string name)
 			// ************************
 			// DELETE
 			//************************
-			cout << menu;
-			cin >> command;
-			cin.ignore(100,'\n');
 
-			while(!exit)
+			command = BoundaryCheck(menu, 0, 5);
+
+			while(command != 0)
 			{
 				switch(command)
 				{
 				case 1: cout << "Enter new name: ";
 						getline(cin,newName);
 						searchPtr->GetData().SetName(newName);
-						cout << searchPtr->GetData().GetName();
-						cin.ignore();
-
 						break;
 				case 2: cout << "Enter new Address 1: ";
 						getline(cin,newAddressOne);
@@ -287,22 +299,33 @@ void CustomerList::EditCustomer(string name)
 						getline(cin,newAddressTwo);
 						searchPtr->GetData().SetAddress(newAddressTwo);
 						break;
-				case 4: cout << "Enter new Rating: ";
-						getline(cin,newRating);
+				case 4:
+
+					rating = BoundaryCheck(rateMenu, 0, 4);
+
+						switch (rating){
+						case 1: newRating = "very interested";
+							break;
+						case 2: newRating = "somewhat interested";
+							break;
+						case 3: newRating = "somewhat interested";
+							break;
+						case 4:	newRating = "never call again";
+						}
 						searchPtr->GetData().SetRating(newRating);
 						break;
-				case 5: cout << "Edit key user(Y/N): ";
+				case 5: cout << "Set User As Key Customer(Yes/No): ";
 						cin.get(yesNo);
 						cin.ignore(100,'\n');
 						while(!valid)
 						{
-							if(toupper(yesNo == 'Y'))
+							if(toupper(yesNo) == 'Y')
 							{
 								newKey = true;
 								searchPtr->GetData().SetKey(newKey);
 								valid = true;
 							}
-							else if(toupper(yesNo == 'N'))
+							else if(toupper(yesNo) == 'N')
 							{
 								newKey = false;
 								searchPtr->GetData().SetKey(newKey);
@@ -317,19 +340,17 @@ void CustomerList::EditCustomer(string name)
 						}
 						break;
 				case 0 : cout << "Exiting.\n";
-						 exit = true;
 						break;
 
 				}
 
-				cout << menu;
-				cin >> command;
-				cin.ignore(100,'\n');
+				command = BoundaryCheck(menu, 0, 5);
+
 			}
 
 			found = true;
 		}
-		else //Non-Primary Element Removal
+		else
 		{
 			searchPtr = searchPtr->GetNext(); //Move search marker to next node
 		}
@@ -339,4 +360,108 @@ void CustomerList::EditCustomer(string name)
 	delete searchPtr;
 }
 
+void CustomerList::CreateNewCustomer(){
 
+	string newName;
+	string newAddressOne;
+	string newAddressTwo;
+	string newRating;
+	int    rating;
+	char yesNo;
+	bool newKey = false;
+	bool valid = false;
+	User newUser;
+
+	string menu = "\nWhat information would you like to edit?\n"
+			       	    " 1) Name\n"
+				   	    " 2) Address 1\n"
+						" 3) Address 2\n"
+				   	   	" 4) Rating\n"
+				   	   	" 5) Key\n"
+						" 0) EXIT\n"
+						"Enter Command: ";
+
+	string rateMenu =     "[1] - Very Interested"
+						"\n[2] - Somewhat Interested"
+						"\n[3] - Not Interested"
+						"\n[4] - Never Call Again"
+						"\nEnter new Rating: ";
+
+			 cout << "Enter new name: ";
+			getline(cin,newName);
+
+			 cout << "Enter new Address 1: ";
+			getline(cin,newAddressOne);
+
+			 cout << "Enter new Address 2: ";
+			getline(cin,newAddressTwo);
+
+				rating = BoundaryCheck(rateMenu, 0, 4);
+
+					switch (rating){
+					case 1: newRating = "very interested";
+						break;
+					case 2: newRating = "somewhat interested";
+						break;
+					case 3: newRating = "somewhat interested";
+						break;
+					case 4:	newRating = "never call again";
+					}
+		 cout << "Set User As Key Customer(Yes/No): ";
+			cin.get(yesNo);
+			cin.ignore(100,'\n');
+			while(!valid)
+			{
+				if(toupper(yesNo) == 'Y')
+				{
+					newKey = true;
+					valid = true;
+				}
+				else if(toupper(yesNo) == 'N')
+				{
+					newKey = false;
+					valid = true;
+				}
+				else
+				{
+					cout << "Edit key user(Y/N): ";
+					cin.get(yesNo);
+					cin.ignore(100,'\n');
+				}
+			}
+
+
+			newUser.SetValues(newName, newAddressOne,
+					newAddressTwo, newKey, newRating, false);
+
+			AddCust(newUser);
+}
+
+void CustomerList::SaveTransactions(string fileName){
+	Node<User>* myUser;
+	ostringstream output;
+	myUser = userList.GetHead();
+	ifstream inFile;
+	ofstream oFile;
+    string allTrans;
+
+    //read in previous file so we can add to it without deleting
+	//previous contents
+	inFile.open(fileName.c_str());
+	while(!inFile.eof()){
+		getline(inFile, allTrans);
+	output << allTrans << endl;
+	}
+	inFile.close();
+
+	oFile.open(fileName.c_str());
+	oFile << output.str();
+
+	while(myUser != NULL)
+	{
+		oFile << myUser->GetData().OutputTransactions();
+		myUser = myUser->GetNext();
+	}
+
+	oFile.close();
+}

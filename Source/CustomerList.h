@@ -11,6 +11,7 @@
 #include <string>
 #include "User.h"
 #include "linkListTemplate.h"
+#include "BoundaryCheck.h"
 #include  <fstream>
 using namespace std;
 
@@ -27,8 +28,10 @@ public:
 	string PrintCustList();
 	string SaveFile();
 	string PrintCustList(bool keyOnly);
+	void SaveTransactions(string);
 	string PrintCustWithTrans();
 	void EditCustomer(string name);
+	void CreateNewCustomer();
 
 	//MakePurchase
 	//EditPrevTransactions

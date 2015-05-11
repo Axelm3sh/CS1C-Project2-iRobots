@@ -1,0 +1,42 @@
+
+Customer  : CIA
+Address   : 987 Jefferson Blvd
+            Baltimore, MD 00754
+Rating    : not interested
+Key       : Yes
+Pamphlet  : Not Received
+
+Customer  : FBI
+Address   : 1234 Lincoln Ave.
+            Washington D.C. 00234
+Rating    : somewhat interested
+Key       : Yes
+Pamphlet  : Not Received
+
+Customer  : Los Angeles Airport
+Address   : 1 World Way
+            Los Angeles, CA 90045
+Rating    : very interested
+Key       : Yes
+Pamphlet  : Not Received
+
+Customer  : Los Angeles Angels
+Address   : 2000 East Gene Autry Way
+            Anaheim, CA 92806
+Rating    : very interested
+Key       : Yes
+Pamphlet  : Not Received
+
+Customer  : Los Angeles Dodgers
+Address   : 1000 Elysian Park Avenue
+            Los Angeles, CA 9 0012
+Rating    : very interested
+Key       : Nice To Have
+Pamphlet  : Not Received
+
+Customer  : Saddleback College
+Address   : 28000 Marguerite Pkwy
+            Mission Viejo, CA 92692
+Rating    : somewhat interested
+Key       : Nice To Have
+Pamphlet  : Not Received

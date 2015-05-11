@@ -1,0 +1,57 @@
+
+
+Customer Name:      CIA
+--------------------------------------
+Date:               04/10/115
+Model Number:       3
+Price Per Bot:      $500000.00
+Quantity:           1
+Maintenance Plan:   Yes
+Total Cost:         $575000.00
+
+
+Customer Name:      Saddleback College
+--------------------------------------
+Date:               04/10/115
+Model Number:       1
+Price Per Bot:      $50000.00
+Quantity:           1
+Maintenance Plan:   Yes
+Total Cost:         $57500.00
+
+Date:               04/10/115
+Model Number:       3
+Price Per Bot:      $500000.00
+Quantity:           5
+Maintenance Plan:   Yes
+Total Cost:         $2875000.00
+
+
+Customer Name:      CIA
+--------------------------------------
+Date:               04/10/115
+Model Number:       3
+Price Per Bot:      $500000.00
+Quantity:           2
+Maintenance Plan:   Yes
+Total Cost:         $1150000.00
+
+Customer Name:      CIA
+--------------------------------------
+Date:               04/10/115
+Model Number:       2
+Price Per Bot:      $250000.00
+Quantity:           1
+Maintenance Plan:   No
+Total Cost:         $250000.00
+
+
+Customer Name:      CIA
+--------------------------------------
+Date:               04/11/115
+Model Number:       2
+Price Per Bot:      $250000.00
+Quantity:           3
+Maintenance Plan:   Yes
+Total Cost:         $862500.00
+

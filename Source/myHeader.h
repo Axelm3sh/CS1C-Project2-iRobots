@@ -10,41 +10,53 @@
 #include <iomanip>
 #include <fstream>
 #include "Date.h"
+#include <time.h>
 #include "nodeTemplate.h"
 #include "CustomerList.h"
+#include "BoundaryCheck.h"
 
 using namespace std;
+
+const string pamphletFile = "requestPamphlet.txt";
 
 const string login =
 		"Welcome to the iRobot Shop!\n"
 		"[1] User\n"
 		"[2] Admin\n"
+		"[3] Guest\n"
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 
 const string mainMenuUser =
-		"[1] iRobot Shop\n"
-		"[2] GET INFORMATION\n"
+		"[1] GET INFORMATION\n"
+		"[2] REQUEST A PAMPHLET\n"
 		"[3] TESTIMONIALS\n"
-		"[4] REQUEST A PAMPHLET\n"
+		"[4] iRobot Shop\n"
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 
+const string mainMenuGuest =
+		"[1] GET INFORMATION\n"
+		"[2] REQUEST A PAMPHLET\n"
+		"[3] TESTIMONIALS\n"
+		"[0] EXIT\n"
+		"Please enter one of the above options: ";
 
 const string mainMenuAdmin =
-		"[1] iRobot Shop\n"
-		"[2] GET INFORMATION\n"
+		"[1] GET INFORMATION\n"
+		"[2] REQUEST A PAMPHLET\n"
 		"[3] TESTIMONIALS\n"
-		"[4] REQUEST A PAMPHLET\n"
+		"[4] iRobot Shop\n"
 		"[5] EDIT CUSTOMER INFORMATION\n"
 		"[6] VIEW/PRINT CUSTOMER LIST\n"
+		"[7] ADD NEW CUSTOMER\n"
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 
 
 const string shopMenu =
-		"[1] PURCHASE ROBOT\n"
-		"[2] EDIT PREVIOUS TRANSACTION\n"
+		"[1] REVIEW PRICING OPTIONS\n"
+		"[2] PURCHASE ROBOT\n"
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 
@@ -70,8 +82,7 @@ const string getInfoMenu =
 
 const string viewCustomerListMenu =
 		"[1] VIEW CUSTOMER LIST\n"
-		"[2] EDIT CUSTOMER LIST\n"
-		"[3] PRINT CUSTOMER LIST\n"
+		"[2] PRINT CUSTOMER LIST\n"
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 
@@ -92,8 +103,7 @@ const string salesPitch =
 		"everyday tasks.  Different models are specially designed to accomplish a more specific\n"
 		"set of tasks in order to function with optimum performance!\n"
 		"If you do not find exactly what you are looking for then we will gladly\n"
-		"special order and even design the iRobot of your dreams!!!\n\n"
-		"PRESS [--key to be determined--] to start your order now!\n";
+		"special order and even design the iRobot of your dreams!!!\n\n";
 
 const string suitableEnvironment =
 		"iRobots are suitable for so many environments it would take a novel\n"
@@ -124,17 +134,27 @@ const string paymentPlans =
 		"Recommended for institutional users dealing with sophisticated terrorists\n"
 		"$500000\n\n";
 
-const string buyMenu =
+const string buyRobotType =
 		  "[1] Silver   - $50000"
 		"\n[2] Gold     - $250000"
 		"\n[3] Platinum - $500000"
 		"\n[0] Exit"
 		"\nPlease Select a Robot: ";
 
+const string howManyRobots = "How many robots would you like to purchase?"
+		"(keep in mind we do not sell more than 5 robots per transactions\n"
+		"for security reasons): ";
+
+const string maintPlan =
+		"[1] - YES\n"
+		"[2] - NO\n"
+		"Would you like to purchase the maintenance plan: ";
+
+
 const string contactUs =
 		"If you like to directly contact a Customer Service Representative,\n"
 		"Please Call us at: (949) 913-1073\n"
-		"or Email us at: YoloSwagMAster@iRobot.org";
+		"or Email us at: YoloSwagMAster@iRobot.org\n\n";
 
 const string warrantyInfo =
 		"Maintenance Plan:\n"
@@ -153,6 +173,16 @@ const string pamphMenu =
 		"\n[0] - EXIT"
 		"\nWould you like to request a pamphlet: ";
 
+const string robotDescrip =
+		"Forged from a mixture of Carbon Nanotubes and Steel Alloys, our Robots have a sleek, black\n"
+		"design with engineered aerodynamics that surpass NASA's space shuttles.\n"
+		"The outer shell of the robot will be able to resist high temperatures and is scratch-proof\n"
+		"while the inner hardware of the robot is encased in shock-resistant alloys equipped with an\n"
+		"Electronic Counter Measure device to deter security hackers from taking over the robot.\n\n";
 
+const string FAQUs =
+		"If you have more questions, contact a Service Questionnaire Representative,\n"
+		"Please Call us at: (949) 352-5309\n"
+		"or Email us at: FAQquest@iRobot.org\n\n";
 
 #endif /* MYHEADER_H_ */

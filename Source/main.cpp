@@ -1,109 +1,135 @@
 #include "myHeader.h"
-#include "BoundaryCheck.cpp"
+
 
 int main(){
-
-
 
 	//initialize the list from file VVVVVVVVVVVVVVVVVVVVVVVVV
 	ifstream inFile;
 	ofstream oFile;
 	inFile.open("inFile.txt");
-	CustomerList myList(inFile);
+	CustomerList *myList;
+	myList = new CustomerList(inFile);
 	inFile.close();
 
-	Node<User>* newUser;
-	Transaction myTrans;
+	bool loggedIn; //PROC - used to check if successful loggin
 
+	string       userName;     //IN   - used to search for "logging in"
+	Node<User>*  currentUser; //PROC - used to access menu options as current user
 
+	Transaction* myTrans;
+	int          robotQuantity;
+	int			 robotModel;
+	bool         maintBool;
+	int			 maintInt;
+	int day;
+	int month;
+	int year;
 
-	//newUser = myList.SearchListByName("Saddleback College");
-	myList.EditCustomer("Saddleback College");
+	bool isAdmin = false;
 
-//	newUser = myList.SearchListByName("CIA");
-//	newUser->GetData().SetName("aslkdjfkldsf");
+	//used for guest to request pamphlet
+	string guestName;
+	string guestAddrLine1;
+	string guestAddrLine2;
+	ostringstream outputPamph;
+	string        pamphletString;
+	bool pamphletRequested = false;
 
+	//used to initialize date to today's date for ouput data
+	struct tm * todayTime;
+	time_t timeNow;
+	time(&timeNow);
+	todayTime = localtime(&timeNow );
+	day   = todayTime->tm_mday;
+	month = todayTime->tm_mon + 1;
+	year  = (todayTime->tm_year) + 1900;
+	Date today(month, day, year);
 
-	cout << myList.PrintCustList();
+	//check to see if a trans was made at all
+	bool transactionMade = false;
 
-	//cout << newUser->GetData().PrintUser();
 
 	oFile.open("myFile.txt");
-	oFile << myList.SaveFile();
+	oFile << myList->SaveFile();
 	oFile.close();
-
-	cout << myList.PrintCustList();
-
-	//the menu down below is updated!!!
 
 	int menuOption;   //PROC - used to process user input and decide which menu
 					  //       paths to take
-	const int userEndBound  = 4;
-	const int adminEndBound = 6;
+	const int userEndBound   = 4;
+	const int adminEndBound  = 7;
+	const int guestEndBound  = 3;
 	int		  endBound;
 	string    mainMenu;
 
-	menuOption = BoundaryCheck(login, 0, 2);
+	string userToChange;
+	bool   userChanged = false;
 
-	if(menuOption == 1)
-	{
+
+	loggedIn = false;
+
+
+
+	menuOption = BoundaryCheck(login, 0, 3);
+
+	//CHECK to see if user, administrator, or guest
+
+	switch(menuOption){
+	case 1:
+
 		endBound = userEndBound;
 		mainMenu  = mainMenuUser;
-	}
-	else{
+
+		cout << "\nEnter Username: ";
+		getline(cin,userName);
+
+		//validate that customer exists
+		while(userName != "exit" && !loggedIn)
+		{
+			currentUser = myList->SearchListByName(userName);
+
+			if(currentUser != NULL){
+				loggedIn = true;
+			cout << "\nHello " << currentUser->GetData().GetName() << ", Welcome to the iRobot Shop!\n";
+			}
+			else{
+				cout << "\nPlease try again or enter 'exit' to quit program: ";
+					getline(cin,userName);
+			}
+		}//end while(userName != "exit" && !loggedIn)
+		break;
+	case 2:
 		endBound = adminEndBound;
 		mainMenu  = mainMenuAdmin;
+		cout << "\nHello Administrator, Welcome to the iRobot Shop!\n";
+		isAdmin = true;
+		break;
+	case 3:
+		endBound = guestEndBound;
+		mainMenu  = mainMenuGuest;
+		loggedIn = true;
+		cout << "\nHello Prospective Customer, Welcome to the iRobot Shop!\n";
 	}
 
+//check to see if unvalidated user chose to exit
+if(userName != "exit"){
+
+	menuOption = BoundaryCheck(mainMenu, 0, endBound);
 
 		//while the user wishes to stay in the program
 		while(menuOption != 0){
 
-		menuOption = BoundaryCheck(mainMenu, 0, endBound);
-
 		switch (menuOption)
 		{
-		//Enter the shop
-		case 1:
-			menuOption = BoundaryCheck(shopMenu, 0, 2);
 
-			//nested switch process shop operations
-			switch(menuOption)
-			{
-			case 1:
-				cout << "...purchase options...\n";
-
-				cout << "Press any key to continue";
-				cin.ignore();
-				break;
-			case 2:
-				cout << "...edit previous transactions...\n";
-
-				cout << "Press any key to continue";
-				cin.ignore();
-				break;
-			case 3:
-				cout << "...testimonial operations...\n";//TODO fixplz
-
-				cout << "Press any key to continue";
-				cin.ignore();
-				break;
-			default:
-				cout << "returning to main menu";
-
-				cout << "Press any key to continue";
-				cin.ignore();
-			}
-			break;
 
 		//Get Information
-		case 2:
+		case 1:
 			//nested switch process Get Info operations
 			menuOption = BoundaryCheck(getInfoMenu, 0, 7);
 			switch(menuOption)
 			{
 			case 1:
-				cout << "...robot destription...\n";
+				cout << robotDescrip;
 
 				cout << "Press any key to continue";
 				cin.ignore();
@@ -121,7 +147,7 @@ int main(){
 				cin.ignore();
 				break;
 			case 4:
-				cout << "..faq...\n";
+				cout << FAQUs;
 
 				cout << "Press any key to continue";
 				cin.ignore();
@@ -146,6 +172,79 @@ int main(){
 			}
 			break;
 
+			//Request a Pamphlet
+			case 2:
+				//check if pamphlet already requested in session
+				if(!pamphletRequested){
+
+					menuOption = BoundaryCheck(pamphMenu, 0, 2);
+
+					if(menuOption == 1){
+						pamphletRequested = true;
+						//check endBound to see if guest, user, or admin
+						if(endBound == adminEndBound){
+							cout << "\nYou do not need a pamphlet, you are an admin!\n";
+						}
+						else{
+							inFile.open(pamphletFile.c_str());
+								while(!inFile.eof()){
+									getline(inFile, pamphletString);
+								outputPamph << pamphletString << endl;
+								}
+								inFile.close();
+
+								oFile.open(pamphletFile.c_str());
+								oFile << outputPamph.str();
+								outputPamph.str("");
+								outputPamph.clear();
+
+
+
+								if(endBound == userEndBound){
+									currentUser->GetData().RequestPamphlet();
+
+									oFile << "\n--------------------------------------------\n";
+									oFile << "Pamphlet Requested On " << today.DisplayDate()
+										  << " by " << currentUser->GetData().GetName() << endl;
+									oFile << "Send To:\n" << currentUser->GetData().GetAddressLine1() << endl;
+									oFile << currentUser->GetData().GetAddressLine2();
+									oFile << "\n--------------------------------------------\n";
+								}
+								//guest
+								else{
+									cout << "Please provide some basic information so we can"
+											" get our pamphlet to you!\n";
+									cout << "Name:           ";
+									getline(cin, guestName);
+									cout << "Address Line 1: ";
+									getline(cin, guestAddrLine1);
+									cout << "Address Line 2: ";
+									getline(cin, guestAddrLine2);
+
+									oFile << "\n--------------------------------------------\n";
+									oFile << "Pamphlet Requested On " << today.DisplayDate()
+										  << " by " << guestName << endl;
+									oFile << "Send To:\n" << guestAddrLine1 << endl;
+								    oFile << guestAddrLine2;
+									oFile << "\n--------------------------------------------\n";
+
+								}
+								oFile.close();
+						}
+
+					}//end if(menuOption == 1)
+				}//end if(pamphlet requested)
+				else
+				{
+
+					cout << "\nYou have already requested a pamphlet this session,"
+							" iRobot has been informed\n"
+							"and is currently working to get it to you ASAP!\n";
+				}
+
+				cout << "Press any key to continue";
+				cin.ignore();
+				break;
 		case 3:
 			menuOption = BoundaryCheck(testimonialMenu, 0, 2);
 			//nested switch process testimonial operations
@@ -167,21 +266,79 @@ int main(){
 
 
 			break;
-		//Request a Pamphlet
+
+
+		//Enter the shop
 		case 4:
+			menuOption = BoundaryCheck(shopMenu, 0, 2);
 
-			menuOption = BoundaryCheck(pamphMenu, 0, 2);
+			//nested switch process shop operations
+			switch(menuOption)
+			{
+			case 1:
+				cout << paymentPlans;
 
-			if(menuOption == 1){
+				cout << "Press any key to continue";
+				cin.ignore();
+				break;
+			case 2:
+				if(!isAdmin){
+				transactionMade = true;
+				robotModel    = BoundaryCheck(buyRobotType, 0, 3);
+				robotQuantity = BoundaryCheck(howManyRobots, 0, 5);
+				maintInt      = BoundaryCheck(maintPlan, 0, 3);
+				if(maintInt == 1)
+				{
+					maintBool = true;
+				}
+				else{
+					maintBool = false;
+				}
 
+				myTrans = new Transaction(today, robotModel, maintBool, robotQuantity);
+
+				currentUser->GetData().AddTransaction(*myTrans);
+
+				delete myTrans;
+				}
+				else{
+					cout << "\nAdministrators can not make purchases!\n"
+							"If you want to make a purchase add yourself as a "
+							"new customer then log in as a user!\n\n";
+				}
+
+				cout << "Press any key to continue";
+				cin.ignore();
+				break;
+			case 3:
+				cout << "...testimonial operations...\n";//TODO fixplz
+
+				cout << "Press any key to continue";
+				cin.ignore();
+				break;
+			default:
+				cout << "returning to main menu";
+
+				cout << "Press any key to continue";
+				cin.ignore();
 			}
-
-			cout << "Press any key to continue";
-			cin.ignore();
 			break;
 			//Edit customer information
 			case 5:
-					cout << "...edit customer menu...\n";
+				cout << "\nPlease enter the user you would like to edit: ";
+				getline(cin, userToChange);
+				while(userToChange != "exit" && !userChanged){
+					if(myList->SearchListByName(userToChange) != NULL){
+						myList->EditCustomer(userToChange);
+						userChanged = true;
+					}
+					else{
+						cout << "\nPlease try again or enter 'exit' to return to main menu: ";
+							getline(cin,userToChange);
+					}
+				}
+
+				userToChange.clear();
 
 					cout << "Press any key to continue";
 					cin.ignore();
@@ -189,31 +346,38 @@ int main(){
 				break;
 			//View/Print customer List
 			case 6:
-				menuOption = BoundaryCheck(viewCustomerListMenu, 0, 3);
+				menuOption = BoundaryCheck(viewCustomerListMenu, 0, 2);
 				//nested switch process view/print customer list operations
-				switch(menuOption)
-				{
-				case 1:
-					cout << "...View Customer LIst..\n";
+			if(menuOption ==1){
 
-					cout << "Press any key to continue";
-					cin.ignore();
-					break;
-				case 2:
-					cout << "...Edit Customer List...\n";
+					cout << myList->PrintCustList();
 
-					cout << "Press any key to continue";
+					cout << "\nPress any key to continue";
 					cin.ignore();
-					break;
-				case 3:
-					cout << "...Print Customer List..\n";
+			}
+			else{
 
-					cout << "Press any key to continue";
-					cin.ignore();
-					break;
+				oFile.open("myFile.txt");
+				oFile << myList->SaveFile();
+				oFile.close();
+
+				delete myList;
+				inFile.open("myFile.txt");
+				myList = new CustomerList(inFile);
+				inFile.close();
+
+
+				oFile.open("PrintedCustomerFile.txt");
+				oFile << myList->PrintCustList();
+				oFile.close();
+
+				cout << "\nCustomer File has been updated!";
+				cout << "\nPress any key to continue";
+				cin.ignore();
 				}
-				break;
-
+			break;
+			case 7:
+					myList->CreateNewCustomer();
 		}//end main user option switch statement
 
 		menuOption = BoundaryCheck(mainMenu, 0, endBound);
@@ -221,12 +385,22 @@ int main(){
 		}//end while(menuOption != 0)
 
 	oFile.open("myFile.txt");
-	oFile << myList.SaveFile();
+	oFile << myList->SaveFile();
 	oFile.close();
 
-	oFile.open("transactions.txt");
-	oFile << myList.PrintCustWithTrans();
+//	oFile.open("transactions.txt");
+//	oFile << myList.PrintCustWithTrans();
+//	oFile.close();
+
+	//OUTPUT - only output transactions if one was made
+	if(transactionMade){
+	myList->SaveTransactions("transactionFile.txt");
+	}
+
+	oFile.open("PrintedCustomerFile.txt");
+	oFile << myList->PrintCustList();
 	oFile.close();
+}
 
 return 0;
 }

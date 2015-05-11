@@ -23,7 +23,7 @@ public:
 	User(string);
 	~User();
 
-	void SetValues(string, string, string, bool, string);
+	void SetValues(string, string, string, bool, string, bool);
 	void SetName(string);
 	void SetRating(string);
 	void SetKey(bool);
@@ -37,6 +37,8 @@ public:
 
 	string GetName();
 	bool   GetKey();
+	string GetAddressLine1();
+	string GetAddressLine2();
 	string GetRating();
 	bool   GetIsAdmin();
 	string PrintUser();
@@ -52,7 +54,7 @@ private:
 	string 				  rating;
 	LinkList<Transaction> myTransactions;
 	bool   				  isAdmin;
-	bool 				  requestPamph;
+	bool 				  pamphletReceived;
 
 };
 
