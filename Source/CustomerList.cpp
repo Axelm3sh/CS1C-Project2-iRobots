@@ -10,6 +10,8 @@
 		string   			  myStringKey;
 		bool   				  myKey;
 		string 				  myRating;
+		string				  pampString;
+		bool				  pampBool;
 
 
 
@@ -28,9 +30,16 @@
 				else{
 					myKey = false;
 				}
+				getline(inFile, pampString);
+				if(pampString == "not received"){
+					pampBool = false;
+				}
+				else{
+					pampBool = true;
+				}
 
 				newUser.SetValues(myName, myAddress, myAddress2,
-								  myKey, myRating);
+								  myKey, myRating, pampBool);
 
 			    AddCust(newUser);
 
@@ -235,6 +244,7 @@ void CustomerList::EditCustomer(string name)
 	string newAddressOne;
 	string newAddressTwo;
 	string newRating;
+	int    rating;
 	char yesNo;
 	bool newKey = false;
 	bool valid = false;
@@ -250,6 +260,12 @@ void CustomerList::EditCustomer(string name)
 						" 0) EXIT\n"
 						"Enter Command: ";
 
+	string rateMenu =     "[1] - Very Interested"
+						"\n[2] - Somewhat Interested"
+						"\n[3] - Not Interested"
+						"\n[4] - Never Call Again"
+						"\nEnter new Rating: ";
+
 
 	searchPtr = userList.GetHead(); //Assign search marker to head
 
@@ -264,11 +280,10 @@ void CustomerList::EditCustomer(string name)
 			// ************************
 			// DELETE
 			//************************
-			cout << menu;
-			cin >> command;
-			cin.ignore(100,'\n');
 
-			while(!exit)
+			command = BoundaryCheck(menu, 0, 5);
+
+			while(command != 0)
 			{
 				switch(command)
 				{
@@ -284,22 +299,33 @@ void CustomerList::EditCustomer(string name)
 						getline(cin,newAddressTwo);
 						searchPtr->GetData().SetAddress(newAddressTwo);
 						break;
-				case 4: cout << "Enter new Rating: ";
-						getline(cin,newRating);
+				case 4:
+
+					rating = BoundaryCheck(rateMenu, 0, 4);
+
+						switch (rating){
+						case 1: newRating = "very interested";
+							break;
+						case 2: newRating = "somewhat interested";
+							break;
+						case 3: newRating = "somewhat interested";
+							break;
+						case 4:	newRating = "never call again";
+						}
 						searchPtr->GetData().SetRating(newRating);
 						break;
-				case 5: cout << "Edit key user(Y/N): ";
+				case 5: cout << "Set User As Key Customer(Yes/No): ";
 						cin.get(yesNo);
 						cin.ignore(100,'\n');
 						while(!valid)
 						{
-							if(toupper(yesNo == 'Y'))
+							if(toupper(yesNo) == 'Y')
 							{
 								newKey = true;
 								searchPtr->GetData().SetKey(newKey);
 								valid = true;
 							}
-							else if(toupper(yesNo == 'N'))
+							else if(toupper(yesNo) == 'N')
 							{
 								newKey = false;
 								searchPtr->GetData().SetKey(newKey);
@@ -314,19 +340,17 @@ void CustomerList::EditCustomer(string name)
 						}
 						break;
 				case 0 : cout << "Exiting.\n";
-						 exit = true;
 						break;
 
 				}
 
-				cout << menu;
-				cin >> command;
-				cin.ignore(100,'\n');
+				command = BoundaryCheck(menu, 0, 5);
+
 			}
 
 			found = true;
 		}
-		else //Non-Primary Element Removal
+		else
 		{
 			searchPtr = searchPtr->GetNext(); //Move search marker to next node
 		}

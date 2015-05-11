@@ -11,6 +11,7 @@
 #include <string>
 #include "User.h"
 #include "linkListTemplate.h"
+#include "BoundaryCheck.h"
 #include  <fstream>
 using namespace std;
 
