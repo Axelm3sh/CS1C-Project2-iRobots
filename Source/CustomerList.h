@@ -9,7 +9,7 @@
 #define CUSTOMERLIST_H_
 
 #include <string>
-#include "User.h"
+#include "Admin.h"
 #include "linkListTemplate.h"
 #include "BoundaryCheck.h"
 #include  <fstream>
