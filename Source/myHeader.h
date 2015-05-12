@@ -14,6 +14,9 @@
 #include "nodeTemplate.h"
 #include "CustomerList.h"
 #include "BoundaryCheck.h"
+#include "Input.h"
+#include "TestimonialList.h"
+#include "TestimonialNode.h"
 
 using namespace std;
 
@@ -21,9 +24,10 @@ const string pamphletFile = "requestPamphlet.txt";
 
 const string login =
 		"Welcome to the iRobot Shop!\n"
-		"[1] User\n"
+		"[1] Existing User\n"
 		"[2] Admin\n"
 		"[3] Guest\n"
+		"[4] HELP\n"
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 
@@ -63,7 +67,7 @@ const string shopMenu =
 
 const string testimonialMenu =
 		"[1] READ TESTIMONIALS\n"
-		  "[2] ADD TESTIMONIAL\n"
+		"[2] ADD TESTIMONIAL\n"
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 
@@ -82,7 +86,9 @@ const string getInfoMenu =
 
 const string viewCustomerListMenu =
 		"[1] VIEW CUSTOMER LIST\n"
-		"[2] PRINT CUSTOMER LIST\n"
+		"[2] VIEW ONLY KEY CUSTOMER LIST\n"
+		"[3] PRINT CUSTOMER LIST\n"
+		"[4] PRINT ONLY KEY CUSTOMER LIST\n"
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 
@@ -168,10 +174,15 @@ const string warrantyInfo =
 		"This does not include damage caused by user error.\n\n";
 
 const string pamphMenu =
-		"\n[1] - YES"
+		"[1] - YES"
 		"\n[2] - NO"
 		"\n[0] - EXIT"
 		"\nWould you like to request a pamphlet: ";
+
+const string robotType = "\nPlease Enter Model of Robot You Bought:\n"
+		"1. Silver\n"
+		"2. Gold\n"
+		"3. Platinum\n";
 
 const string robotDescrip =
 		"Forged from a mixture of Carbon Nanotubes and Steel Alloys, our Robots have a sleek, black\n"
@@ -184,5 +195,10 @@ const string FAQUs =
 		"If you have more questions, contact a Service Questionnaire Representative,\n"
 		"Please Call us at: (949) 352-5309\n"
 		"or Email us at: FAQquest@iRobot.org\n\n";
+
+const string HALPME =
+		"You will be prompted with different options from the program.\n"
+		"Please enter a selection from the displayed options to access the different menus.\n"
+		"Enter 0 to exit the current menu\n\n";
 
 #endif /* MYHEADER_H_ */

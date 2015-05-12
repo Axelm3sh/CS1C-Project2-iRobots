@@ -17,7 +17,7 @@ class Admin: public User{
 public:
 
 	Admin();
-	~Admin();
+	virtual ~Admin();
 	string GetPassword();
 
 private:

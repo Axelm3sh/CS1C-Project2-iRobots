@@ -29,6 +29,7 @@ void OutputErrorMessage(Type value,    // IN - Value inputted from user.
 				  	    Type minValue, // IN - Max possible value entered.
 				  	    Type maxValue) // IN - Min possible value entered.
 {
+
 	ostringstream errMsg1;       // CALC - First line of error message.
 	ostringstream errMsg2;       // CALC - Second line of error message.
 	string        errMsg1Str;    // CALC - String created for first line.

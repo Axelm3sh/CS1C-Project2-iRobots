@@ -10,6 +10,7 @@ User::User(){
 	pamphletReceived = false;
 }
 
+//copy constructor
 User::User(const User& other) {
 	name    = other.name;
 	address1 = other.address1;
@@ -174,6 +175,7 @@ User& User::operator=(const User& other)
 	rating  	= other.rating;
 	isAdmin 	= other.isAdmin;
 	myTransactions = other.myTransactions;
+	pamphletReceived = other.pamphletReceived;
 
 	return *this;
 }
@@ -195,3 +197,10 @@ string User::GetAddressLine1(){
 string User::GetAddressLine2(){
 	return address2;
 }
+
+bool   User::GetPampReceived(){
+	return pamphletReceived;
+}
+
+
+

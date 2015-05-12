@@ -12,3 +12,7 @@ string Admin::GetPassword(){
 
 
 
+Admin::~Admin()
+{
+
+}

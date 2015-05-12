@@ -22,6 +22,8 @@ public:
 	void PrintAll();
 	int GetCount();
 
+	void DeleteTestimonial(int position);
+
 private:
 	vector <TestimonialNode> Testimonials;
 

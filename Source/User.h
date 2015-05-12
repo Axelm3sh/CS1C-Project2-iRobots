@@ -21,7 +21,7 @@ public:
 	//copy constructor
 	User(const User&);
 	User(string);
-	~User();
+	virtual ~User();
 
 	void SetValues(string, string, string, bool, string, bool);
 	void SetName(string);
@@ -45,6 +45,7 @@ public:
 	string PrintUserToFile();
 	string OutputTransactions();
 	User& operator=(const User&);
+	bool   GetPampReceived();
 
 private:
 	string 				  name;

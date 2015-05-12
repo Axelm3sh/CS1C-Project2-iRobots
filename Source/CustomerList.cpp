@@ -248,8 +248,6 @@ void CustomerList::EditCustomer(string name)
 	char yesNo;
 	bool newKey = false;
 	bool valid = false;
-	bool exit = false;
-
 
 	string menu = "\nWhat information would you like to edit?\n"
 			       	    " 1) Name\n"
