@@ -144,7 +144,6 @@ const string buyRobotType =
 		  "[1] Silver   - $50000"
 		"\n[2] Gold     - $250000"
 		"\n[3] Platinum - $500000"
-		"\n[0] Exit"
 		"\nPlease Select a Robot: ";
 
 const string howManyRobots = "How many robots would you like to purchase?"

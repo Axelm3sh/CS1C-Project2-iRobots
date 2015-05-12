@@ -224,7 +224,6 @@ if(userName != "exit" && adminPassword != "exit"){
 						}
 						else
 						{
-
 							inFile.open(pamphletFile.c_str());
 								while(!inFile.eof())
 								{
@@ -339,9 +338,9 @@ if(userName != "exit" && adminPassword != "exit"){
 			case 2:
 				if(!isAdmin){
 				transactionMade = true;
-				robotModel    = BoundaryCheck(buyRobotType, 0, 3);
-				robotQuantity = BoundaryCheck(howManyRobots, 0, 5);
-				maintInt      = BoundaryCheck(maintPlan, 0, 3);
+				robotModel    = BoundaryCheck(buyRobotType, 1, 3);
+				robotQuantity = BoundaryCheck(howManyRobots, 1, 5);
+				maintInt      = BoundaryCheck(maintPlan, 1, 2);
 				if(maintInt == 1)
 				{
 					maintBool = true;
@@ -439,6 +438,7 @@ if(userName != "exit" && adminPassword != "exit"){
 					oFile << myList->PrintCustList(true);
 					oFile.close();
 
+					cout << "\nKey Customer File has been updated!";
 					cout << "\nPress any key to continue";
 								cin.ignore();
 
