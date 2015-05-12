@@ -45,6 +45,7 @@ public:
 	string PrintUserToFile();
 	string OutputTransactions();
 	User& operator=(const User&);
+	bool   GetPampReceived();
 
 private:
 	string 				  name;

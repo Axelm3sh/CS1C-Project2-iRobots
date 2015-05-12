@@ -173,7 +173,7 @@ const string warrantyInfo =
 		"This does not include damage caused by user error.\n\n";
 
 const string pamphMenu =
-		"\n[1] - YES"
+		"[1] - YES"
 		"\n[2] - NO"
 		"\n[0] - EXIT"
 		"\nWould you like to request a pamphlet: ";

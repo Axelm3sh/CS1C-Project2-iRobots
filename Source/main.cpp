@@ -238,8 +238,13 @@ if(userName != "exit" && adminPassword != "exit"){
 								outputPamph.clear();
 
 
-
 								if(endBound == userEndBound){
+									//check if current user already received pamphlet
+									if(currentUser->GetData().GetPampReceived()){
+										cout << "\nPamphlet has already been sent and is"
+												" currently on the way!\n";
+									}
+									else{
 									currentUser->GetData().RequestPamphlet();
 
 									oFile << "\n--------------------------------------------\n";
@@ -248,6 +253,7 @@ if(userName != "exit" && adminPassword != "exit"){
 									oFile << "Send To:\n" << currentUser->GetData().GetAddressLine1() << endl;
 									oFile << currentUser->GetData().GetAddressLine2();
 									oFile << "\n--------------------------------------------\n";
+									}
 								}
 								//guest
 								else{
@@ -264,18 +270,17 @@ if(userName != "exit" && adminPassword != "exit"){
 									oFile << "Pamphlet Requested On " << today.DisplayDate()
 										  << " by " << guestName << endl;
 									oFile << "Send To:\n" << guestAddrLine1 << endl;
-								    oFile << guestAddrLine2;
+									oFile << guestAddrLine2;
 									oFile << "\n--------------------------------------------\n";
-
 								}
 								oFile.close();
-						}
+
+							}
 
 					}//end if(menuOption == 1)
 				}//end if(pamphlet requested)
 				else
 				{
-
 					cout << "\nYou have already requested a pamphlet this session,"
 							" iRobot has been informed\n"
 							"and is currently working to get it to you ASAP!\n";
