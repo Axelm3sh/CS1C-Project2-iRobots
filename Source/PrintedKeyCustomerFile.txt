@@ -26,10 +26,3 @@ Address   : 2000 East Gene Autry Way
 Rating    : very interested
 Key       : Yes
 Pamphlet  : Not Received
-
-Customer  : Matt
-Address   : a
-            f
-Rating    : somewhat interested
-Key       : Yes
-Pamphlet  : Not Received
