@@ -37,9 +37,6 @@ class Transaction {
 		bool  maintenance;
 		int   quantity;
 		float totalSpent;
-	    time_t myTime;
-	    tm     timeStruct;
-
 };
 
 

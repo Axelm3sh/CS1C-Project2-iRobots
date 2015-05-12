@@ -9,7 +9,7 @@ TestimonialNode NewTestimonial()
 	TestimonialNode newNode;
 	int selection;
 
-	cout << "\nPlease Enter Your Institution's Name: (If you do not wish to leave a testimonial, leave this blank.\n";
+	cout << "\nPlease Enter Your Institution's Name: (If you do not wish to leave a testimonial, leave this blank).\n";
 	getline(cin, newNode.user);
 
 	if(newNode.user != "")

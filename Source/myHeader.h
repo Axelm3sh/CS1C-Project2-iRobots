@@ -86,7 +86,9 @@ const string getInfoMenu =
 
 const string viewCustomerListMenu =
 		"[1] VIEW CUSTOMER LIST\n"
-		"[2] PRINT CUSTOMER LIST\n"
+		"[2] VIEW ONLY KEY CUSTOMER LIST\n"
+		"[3] PRINT CUSTOMER LIST\n"
+		"[4] PRINT ONLY KEY CUSTOMER LIST\n"
 		"[0] EXIT\n"
 		"Please enter one of the above options: ";
 

@@ -68,9 +68,7 @@ int main(){
 	string userToChange;
 	bool   userChanged = false;
 
-
 	loggedIn = false;
-
 
 	Admin myAdmin;
 	string adminPassword;
@@ -78,7 +76,7 @@ int main(){
 	menuOption = BoundaryCheck(login, 0, 4);
 
 	//CHECK to see if user, administrator, or guest
-while(userName != "exit")
+while(userName != "exit" && !loggedIn)
 {
 	switch(menuOption)
 	{
@@ -110,7 +108,7 @@ while(userName != "exit")
 	case 2:
 		cout << "\nEnter Administrator Password: ";
 		getline(cin,adminPassword);
-		//validate  admin privledges
+		//validate  admin privileges
 		while(adminPassword != "exit" && !loggedIn)
 		{
 			if(adminPassword == myAdmin.GetPassword())
@@ -126,6 +124,9 @@ while(userName != "exit")
 			{
 				cout << "\nPlease try again or enter 'exit' to quit program: ";
 					getline(cin,adminPassword);
+					//if they type exit set userName as exit to escape while loop
+					if(adminPassword == "exit")
+							userName = "exit";
 			}
 		}//end while
 		break;
@@ -392,34 +393,49 @@ if(userName != "exit" && adminPassword != "exit"){
 				break;
 			//View/Print customer List
 			case 6:
-				menuOption = BoundaryCheck(viewCustomerListMenu, 0, 2);
+				menuOption = BoundaryCheck(viewCustomerListMenu, 0, 4);
 				//nested switch process view/print customer list operations
-			if(menuOption ==1){
+
+				switch(menuOption) {
+
+				case 1:
 
 					cout << myList->PrintCustList();
 
 					cout << "\nPress any key to continue";
 					cin.ignore();
-			}
-			else{
+					break;
+				case 2:
+					cout << myList->PrintCustList(true);
+					cout << "\nPress any key to continue";
+								cin.ignore();
+					break;
+				case 3:
+					oFile.open("myFile.txt");
+					oFile << myList->SaveFile();
+					oFile.close();
 
-				oFile.open("myFile.txt");
-				oFile << myList->SaveFile();
-				oFile.close();
+					delete myList;
+					inFile.open("myFile.txt");
+					myList = new CustomerList(inFile);
+					inFile.close();
 
-				delete myList;
-				inFile.open("myFile.txt");
-				myList = new CustomerList(inFile);
-				inFile.close();
+					oFile.open("PrintedCustomerFile.txt");
+					oFile << myList->PrintCustList();
+					oFile.close();
 
+					cout << "\nCustomer File has been updated!";
+					cout << "\nPress any key to continue";
+					cin.ignore();
+					break;
+				case 4:
+					oFile.open("PrintedKeyCustomerFile.txt");
+					oFile << myList->PrintCustList(true);
+					oFile.close();
 
-				oFile.open("PrintedCustomerFile.txt");
-				oFile << myList->PrintCustList();
-				oFile.close();
+					cout << "\nPress any key to continue";
+								cin.ignore();
 
-				cout << "\nCustomer File has been updated!";
-				cout << "\nPress any key to continue";
-				cin.ignore();
 				}
 			break;
 			case 7:
